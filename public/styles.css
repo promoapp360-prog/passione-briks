@@ -465,3 +465,24 @@ legend { font-weight: 700; padding: 0 .3rem; }
 .home-shot figcaption { display: block; padding-block: var(--s3) 0; font-size: .9rem; color: var(--muted); }
 .home-shot figcaption b { font: 700 .95rem var(--f-body); color: var(--ink); }
 @media (prefers-reduced-motion: reduce) { .home-shot img { animation: none; } }
+
+/* Miniature dei set nel catalogo */
+.row { grid-template-columns: 76px 3.4rem 5.6rem minmax(0, 1fr) auto; }
+.thumb-btn {
+  width: 76px; height: 56px; padding: 0; border: 1px solid var(--board-line); border-radius: 6px; overflow: hidden;
+  background: #FFFFFF; cursor: zoom-in; display: grid; place-items: center;
+}
+.thumb-btn img { width: 100%; height: 100%; object-fit: contain; }
+.no-photo { font: 500 .6rem/1.2 var(--f-mono); color: #6B7785; text-align: center; padding: 2px; }
+.set-photo { background: #FFFFFF; border-radius: var(--r); display: grid; place-items: center; min-height: 200px; overflow: hidden; }
+.set-photo img { width: 100%; max-height: 60vh; object-fit: contain; }
+.set-photo .no-photo { font-size: .9rem; padding: var(--s6); }
+.set-links a { color: var(--signal); }
+@media (max-width: 720px) {
+  .row { grid-template-columns: 64px 3rem minmax(0, 1fr); }
+  .thumb-btn { width: 64px; height: 48px; grid-row: 1 / span 2; }
+  .row .yr { grid-column: 2; }
+  .row .num { grid-column: 2; grid-row: 2; }
+  .row .nm { grid-column: 3; grid-row: 1 / span 2; }
+  .row .side { grid-column: 1 / -1; }
+}

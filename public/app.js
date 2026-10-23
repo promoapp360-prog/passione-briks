@@ -481,6 +481,42 @@
     $('#spotBrickset').href = 'https://brickset.com/sets/' + encodeURIComponent(s.n.includes('-') ? s.n : s.n + '-1');
   }
 
+  // Foto dei set: archivio Brickset, con Rebrickable come riserva
+  const fullNum = (n) => (n.includes('-') ? n : n + '-1');
+  const photoSources = (n, big) => [
+    `https://images.brickset.com/sets/${big ? 'images' : 'small'}/${fullNum(n)}.jpg`,
+    `https://cdn.rebrickable.com/media/sets/${fullNum(n).toLowerCase()}.jpg`,
+  ];
+  function photoImg(n, big, alt) {
+    const [a, b] = photoSources(n, big);
+    return `<img src="${a}" data-fallback="${b}" alt="${esc(alt)}" loading="lazy" referrerpolicy="no-referrer">`;
+  }
+  // Se una foto non si carica prova la riserva, poi mostra il segnaposto
+  document.addEventListener('error', (e) => {
+    const img = e.target;
+    if (!(img instanceof HTMLImageElement) || !img.dataset.fallback) return;
+    if (img.dataset.fallback !== 'done') { const f = img.dataset.fallback; img.dataset.fallback = 'done'; img.src = f; }
+    else { img.replaceWith(Object.assign(document.createElement('span'), { className: 'no-photo', textContent: 'Foto non disponibile' })); }
+  }, true);
+
+  function openSetPhoto(n) {
+    const s = catalog.find((x) => x.n === n); if (!s) return;
+    $('#setDetail').innerHTML = `
+      <div class="set-photo">${photoImg(s.n, true, 'Foto del set ' + s.n + ' ' + s.name)}</div>
+      <div class="detail-head">
+        <p class="eyebrow">Set ${esc(s.n)} · ${s.y}</p>
+        <h2 id="setTitle">${esc(s.name)}</h2>
+        <p class="small">${esc([s.line, KIND[s.k], s.p ? fmt(s.p) + ' pezzi' : '', s.sys ? SYS[s.sys][0] : ''].filter(Boolean).join(' · '))}</p>
+      </div>
+      ${s.note ? `<p>${esc(s.note)}</p>` : ''}
+      <p class="spot-links set-links">
+        <a href="https://brickset.com/sets/${encodeURIComponent(fullNum(s.n))}" target="_blank" rel="noopener">Scheda e altre foto su Brickset</a>
+        <a href="https://www.lego.com/it-it/search?q=${encodeURIComponent(s.n.split('-')[0])}" target="_blank" rel="noopener">Cerca su LEGO.com</a>
+      </p>
+      <p class="small">Foto: Brickset / Rebrickable · © LEGO Group.</p>`;
+    $('#setDialog').showModal();
+  }
+
   const eraOf = (y) => ERAS.find((e) => y >= e.from && y <= e.to) || ERAS[ERAS.length - 1];
 
   function renderEraBar() {
@@ -499,6 +535,7 @@
       ? `<button class="own-btn" type="button" data-own="owned" data-n="${esc(s.n)}" aria-pressed="${owned}">Ce l’ho</button><button class="own-btn" type="button" data-own="wish" data-n="${esc(s.n)}" aria-pressed="${wish}">Lo vorrei</button><button class="own-btn" type="button" data-home="${esc(s.n)}" aria-pressed="${collection.home === s.n}">In home</button>`
       : (owned ? '<span class="own own-owned">Ce l’ha Alessio</span>' : wish ? '<span class="own own-wish">Lo vorrebbe</span>' : '');
     return `<li class="row">
+      <button class="thumb-btn" type="button" data-photo="${esc(s.n)}" aria-label="Foto grande di ${esc(s.name)}">${photoImg(s.n, false, '')}</button>
       <span class="yr">${s.y}</span>
       <span class="num">${esc(s.n)}</span>
       <span class="nm"><b>${esc(s.name)}</b><small>${esc(s.line)} · ${esc(KIND[s.k])}</small>${s.note ? `<span class="note">${esc(s.note)}</span>` : ''}</span>
@@ -613,6 +650,7 @@
     $('#catBoard').addEventListener('click', (e) => {
       const b = e.target.closest('[data-own]'); if (b) toggleOwn(b.dataset.n, b.dataset.own);
       const h = e.target.closest('[data-home]'); if (h) setHomeSet(h.dataset.home);
+      const ph = e.target.closest('[data-photo]'); if (ph) openSetPhoto(ph.dataset.photo);
     });
 
     $('#adminOpen').addEventListener('click', openAdmin);
