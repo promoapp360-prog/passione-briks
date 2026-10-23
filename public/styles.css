@@ -513,3 +513,4 @@ legend { font-weight: 700; padding: 0 .3rem; }
 .empty-build { grid-column: 1 / -1; display: grid; gap: var(--s2); padding: var(--s6) var(--s5); border: 2px dashed var(--line); border-radius: var(--r); background: var(--surface); }
 .empty-build b { font: 800 1.3rem var(--f-display); }
 .empty-build span { color: var(--muted); max-width: 60ch; }
+.part-photo { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 6px; max-width: 100%; }
