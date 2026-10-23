@@ -463,8 +463,26 @@
   };
   const KIND = { treno: 'Treno', vagone: 'Vagone', scenario: 'Stazione / scenario' };
   let catalog = [];
-  let collection = { owned: [], wish: [] };
+  let collection = { owned: [], wish: [], home: '21344' };
   let catEra = 'blu', catKind = 'tutti', catQuery = '';
+
+  // Treno LEGO in evidenza nella home (scelto da Alessio nel catalogo, di base l'Orient Express)
+  const SPOT_NOTES = {
+    '21344': 'Il treno di lusso più famoso della storia, che dal 1883 collegava Parigi a Istanbul. Questo set è nato dall’idea di un fan su LEGO Ideas: locomotiva a vapore con tender, vagone ristorante, vagone letto e carrozza salotto, con tantissimi dettagli all’interno.',
+  };
+  function renderHeroSet() {
+    const s = catalog.find((x) => x.n === (collection.home || '21344'));
+    $('#heroSet').hidden = !s;
+    if (!s) return;
+    $('#spotNum').textContent = s.n;
+    $('#spotName').textContent = s.name;
+    $('#spotMeta').textContent = [s.y, s.line, s.p ? fmt(s.p) + ' pezzi' : '', s.sys ? SYS[s.sys][0] : ''].filter(Boolean).join(' · ');
+    $('#spotNote').textContent = SPOT_NOTES[s.n] || s.note || '';
+    $('#spotNote').hidden = !$('#spotNote').textContent;
+    const base = s.n.split('-')[0];
+    $('#spotLego').href = 'https://www.lego.com/it-it/search?q=' + encodeURIComponent(base);
+    $('#spotBrickset').href = 'https://brickset.com/sets/' + encodeURIComponent(s.n.includes('-') ? s.n : s.n + '-1');
+  }
 
   const eraOf = (y) => ERAS.find((e) => y >= e.from && y <= e.to) || ERAS[ERAS.length - 1];
 
@@ -481,7 +499,7 @@
     const owned = collection.owned.includes(s.n), wish = collection.wish.includes(s.n);
     const sys = s.sys ? `<span class="pill pill-${esc(s.sys)}">${esc(SYS[s.sys][0])}${s.opt ? ' · motore a parte' : ''}</span>` : '';
     const mine = token
-      ? `<button class="own-btn" type="button" data-own="owned" data-n="${esc(s.n)}" aria-pressed="${owned}">Ce l’ho</button><button class="own-btn" type="button" data-own="wish" data-n="${esc(s.n)}" aria-pressed="${wish}">Lo vorrei</button>`
+      ? `<button class="own-btn" type="button" data-own="owned" data-n="${esc(s.n)}" aria-pressed="${owned}">Ce l’ho</button><button class="own-btn" type="button" data-own="wish" data-n="${esc(s.n)}" aria-pressed="${wish}">Lo vorrei</button><button class="own-btn" type="button" data-home="${esc(s.n)}" aria-pressed="${collection.home === s.n}">In home</button>`
       : (owned ? '<span class="own own-owned">Ce l’ha Alessio</span>' : wish ? '<span class="own own-wish">Lo vorrebbe</span>' : '');
     return `<li class="row">
       <span class="yr">${s.y}</span>
@@ -494,6 +512,7 @@
   function renderCatalog() {
     if (!catalog.length) return;
     renderEraBar();
+    renderHeroSet();
     const q = catQuery.trim().toLowerCase();
     const match = (s) => {
       if (catKind === 'mine' && !collection.owned.includes(s.n) && !collection.wish.includes(s.n)) return false;
@@ -516,9 +535,9 @@
     try {
       const [cat, col] = await Promise.all([
         fetch('/treni-lego.json').then((r) => r.json()),
-        api('/api/collection').catch(() => ({ owned: [], wish: [] })),
+        api('/api/collection').catch(() => ({ owned: [], wish: [], home: '21344' })),
       ]);
-      catalog = cat; collection = col;
+      catalog = cat; collection = { owned: [], wish: [], home: '21344', ...col };
       const first = catalog[0].y, last = catalog[catalog.length - 1].y;
       $('#catLead').textContent = `Ogni set del mondo dei treni LEGO, dal ${first} al ${last}: ${catalog.length} set tra locomotive, vagoni, stazioni, monorotaie e i treni dei temi speciali come Harry Potter e Disney.`;
       $('#sysLegend').innerHTML = Object.entries(SYS).map(([k, [lab, d]]) => `<div><dt><span class="pill pill-${esc(k)}">${esc(lab)}</span></dt><dd>${esc(d)}</dd></div>`).join('');
@@ -534,6 +553,16 @@
     const has = collection[which].includes(n);
     collection[which] = has ? collection[which].filter((x) => x !== n) : [...collection[which], n];
     if (!has) collection[other] = collection[other].filter((x) => x !== n);
+    saveCollection();
+  }
+
+  function setHomeSet(n) {
+    collection.home = n;
+    saveCollection();
+    $('#catCount').textContent = 'Fatto: questo treno ora è in evidenza nella home.';
+  }
+
+  function saveCollection() {
     renderCatalog();
     const body = JSON.stringify(collection);
     collSaving = collSaving.then(() => api('/api/collection', { method: 'PUT', body })).catch((e) => {
@@ -585,6 +614,7 @@
     }));
     $('#catBoard').addEventListener('click', (e) => {
       const b = e.target.closest('[data-own]'); if (b) toggleOwn(b.dataset.n, b.dataset.own);
+      const h = e.target.closest('[data-home]'); if (h) setHomeSet(h.dataset.home);
     });
 
     $('#adminOpen').addEventListener('click', openAdmin);

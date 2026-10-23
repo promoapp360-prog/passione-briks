@@ -215,7 +215,7 @@ app.get('/api/collection', wrap(async (req, res) => res.json(await store.getColl
 
 app.put('/api/collection', requireAdmin, wrap(async (req, res) => {
   const list = (v) => [...new Set((Array.isArray(v) ? v : []).map((x) => str(x, 20)).filter(Boolean))].slice(0, 2000);
-  const c = { owned: list(req.body && req.body.owned), wish: list(req.body && req.body.wish) };
+  const c = { owned: list(req.body && req.body.owned), wish: list(req.body && req.body.wish), home: str(req.body && req.body.home, 20) || '21344' };
   c.wish = c.wish.filter((x) => !c.owned.includes(x));
   await store.saveCollection(c);
   res.json(c);

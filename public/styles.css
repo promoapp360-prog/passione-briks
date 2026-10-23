@@ -420,3 +420,24 @@ legend { font-weight: 700; padding: 0 .3rem; }
 .hero-photo:hover img { filter: brightness(1.04); }
 .pform-grid .check { display: flex; gap: var(--s2); align-items: center; font-weight: 700; }
 .pform-grid .check input { width: 22px; height: 22px; flex: none; }
+
+/* Treno LEGO in evidenza (biglietto ferroviario) */
+.hero-scene { display: grid; gap: var(--s4); }
+.spot {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); background: var(--board-bg); color: var(--board-ink);
+  border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow);
+}
+.spot-num {
+  display: grid; align-content: center; justify-items: center; gap: 2px; padding: var(--s4);
+  background: var(--board-amber); color: #1A1200; border-right: 3px dashed var(--board-bg); min-width: 6.5rem;
+}
+.spot-num span { font: 700 .7rem var(--f-mono); letter-spacing: .14em; }
+.spot-num b { font: 800 1.5rem var(--f-mono); font-variant-numeric: tabular-nums; }
+.spot-body { padding: var(--s4); display: grid; gap: var(--s2); min-width: 0; }
+.spot-body .eyebrow { color: var(--board-amber); }
+.spot-body h2 { font-size: clamp(1.3rem, 3vw, 1.7rem); }
+.spot-meta { font: 500 .85rem var(--f-mono); color: var(--board-muted); }
+.spot-note { color: var(--board-ink); opacity: .9; }
+.spot-links { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s4); margin-top: var(--s1); }
+.spot-links a { color: var(--board-amber); font-weight: 700; text-underline-offset: 3px; }
+@media (max-width: 480px) { .spot { grid-template-columns: 1fr; } .spot-num { border-right: 0; border-bottom: 3px dashed var(--board-bg); grid-auto-flow: column; justify-content: start; gap: var(--s2); } }
