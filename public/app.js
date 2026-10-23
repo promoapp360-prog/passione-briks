@@ -45,9 +45,9 @@
   const PARTS = [
     { name: 'Mattoncino 2×4', code: '3001', svg: sidePart({ w: 4, plates: 3 }), text: 'Il pezzo classico. Lo uso per le fiancate dei vagoni e per i muri delle stazioni.' },
     { name: 'Piastra 2×4', code: '3020', svg: sidePart({ w: 4, plates: 1 }), text: 'Alta un terzo di un mattoncino. Due piastre sovrapposte fanno un telaio robusto.' },
-    { name: 'Tegola liscia 1×4', code: '2431', svg: sidePart({ w: 4, plates: 1, studs: false }), text: 'Senza bottoncini: rende lisci i tetti delle carrozze e i pavimenti.' },
+    { name: 'Tegola liscia 1×4', code: '2431', svg: sidePart({ w: 4, plates: 1, studs: false }), text: 'Senza stud: rende lisci i tetti delle carrozze e i pavimenti.' },
     { name: 'Pendenza 45° 2×2', code: '3039', svg: (() => { const x = 60; return `<polygon points="${x},64 ${x + 80},64 ${x + 80},40 ${x + 40},40 ${x},64" class="p-fill"/><rect x="${x + 44}" y="35" width="12" height="5" rx="1.5" class="p-fill"/><rect x="${x + 64}" y="35" width="12" height="5" rx="1.5" class="p-fill"/>`; })(), text: 'Per i tetti curvi e il muso delle locomotive diesel.' },
-    { name: 'Piastra jumper 1×2', code: '15573', svg: (() => { const x = 80; return `<rect x="${x}" y="56" width="40" height="8" rx="2" class="p-fill"/><rect x="${x + 14}" y="51" width="12" height="5" rx="1.5" class="p-fill"/>`; })(), text: 'Un solo bottoncino al centro: sposta un pezzo di mezzo bottoncino.' },
+    { name: 'Piastra jumper 1×2', code: '15573', svg: (() => { const x = 80; return `<rect x="${x}" y="56" width="40" height="8" rx="2" class="p-fill"/><rect x="${x + 14}" y="51" width="12" height="5" rx="1.5" class="p-fill"/>`; })(), text: 'Un solo stud al centro: sposta un pezzo di mezzo stud.' },
     { name: 'Staffa 1×2 – 1×2', code: '99781', svg: (() => { const x = 76; return `<rect x="${x}" y="56" width="40" height="8" rx="2" class="p-fill"/><rect x="${x + 4}" y="51" width="12" height="5" rx="1.5" class="p-fill"/><rect x="${x + 24}" y="51" width="12" height="5" rx="1.5" class="p-fill"/><rect x="${x + 40}" y="24" width="8" height="40" rx="2" class="p-fill"/><rect x="${x + 48}" y="28" width="5" height="12" rx="1.5" class="p-fill"/><rect x="${x + 48}" y="48" width="5" height="12" rx="1.5" class="p-fill"/>`; })(), photo: '/pezzi/staffa-1x2.webp', alt: 'Staffa 1×2 blu: base piatta e parete verticale con gli stud girati di lato', text: 'Fa girare gli stud di lato: sotto si aggancia come una piastra, sulla parete in piedi puoi attaccare altri pezzi in orizzontale. È la base della tecnica SNOT. Nella foto, la staffa di Alessio.' },
     { name: 'Trave Technic 1×7', code: '32524', svg: (() => { let s = `<rect x="16" y="22" width="168" height="26" rx="13" class="p-fill-2"/>`; for (let i = 0; i < 7; i++) s += `<circle cx="${29 + i * 23.7}" cy="35" r="7" class="p-hole"/>`; return s; })(), text: 'Con i fori per perni e assi. Serve per i telai motorizzati e i carrelli.' },
     { name: 'Ruote da treno', code: 'carrello', svg: (() => `<rect x="44" y="18" width="112" height="10" rx="2" class="p-fill"/><rect x="60" y="28" width="80" height="8" rx="2" class="p-dark"/><circle cx="72" cy="48" r="16" class="p-dark"/><circle cx="72" cy="48" r="6" class="p-fill"/><circle cx="128" cy="48" r="16" class="p-dark"/><circle cx="128" cy="48" r="6" class="p-fill"/>`)(), text: 'Ruote con il bordino che le tiene sulle rotaie, montate su un carrello che gira in curva.' },
@@ -86,15 +86,15 @@
   /* ---------------- Come si monta ---------------- */
   const HOW = [
     ['Studio il treno vero', 'Cerco foto da tutti i lati e le misure: lunghezza, larghezza, quante porte e finestrini ha.', 'foto + misure'],
-    ['Scelgo la larghezza', '6 bottoncini come i treni LEGO City, oppure 8 per avere più dettagli. Da qui viene la scala.', '6 o 8 bottoncini'],
+    ['Scelgo la larghezza', '6 stud come i treni LEGO City, oppure 8 per avere più dettagli. Da qui viene la scala.', '6 o 8 stud'],
     ['Monto il telaio', 'Piastre lunghe sovrapposte e sfalsate, così il treno non si piega. Sotto aggancio i carrelli con le ruote.', 'piastre + carrelli'],
     ['Alzo le fiancate', 'Mattoncini e finestrini. Lascio lo spazio per le porte e controllo che i lati siano uguali.', 'mattoncini + finestre'],
     ['Tetto e dettagli', 'Tegole lisce e pendenze per il tetto, poi fanali, maniglie, numeri e scritte.', 'tegole + pendenze'],
     ['Prova sul binario', 'Faccio girare il treno su curve e scambi. Se tocca o deraglia, sposto i carrelli o accorcio gli sbalzi.', 'curve R40'],
   ];
   const TECH = [
-    ['SNOT', 'Bottoncini di lato', 'Con staffe e mattoncini speciali i bottoncini guardano di lato. Così si attaccano scritte, strisce colorate e musi lisci.'],
-    ['Offset', 'Mezzo bottoncino', 'La piastra jumper sposta i pezzi di mezzo bottoncino: utile per centrare un fanale o una porta.'],
+    ['SNOT', 'Stud di lato', 'Con staffe e mattoncini speciali gli stud guardano di lato. Così si attaccano scritte, strisce colorate e musi lisci.'],
+    ['Offset', 'Mezzo stud', 'La piastra jumper sposta i pezzi di mezzo stud: utile per centrare un fanale o una porta.'],
     ['Telaio', 'Piastre sfalsate', 'Due strati di piastre con le giunture in punti diversi rendono il telaio rigido come un pezzo unico.'],
     ['Curve', 'Carrelli e sbalzi', 'Più il vagone sporge oltre i carrelli, più in curva esce dal binario. Meglio sbalzi corti e carrelli vicini alle estremità.'],
     ['Ordine', 'Pezzi divisi', 'Prima di iniziare divido i pezzi per forma, poi per colore. Si monta più veloce e si perde meno tempo a cercare.'],
@@ -113,7 +113,7 @@
     const scale = (wid * 1000) / (studs * 8);
     const modelMm = (len * 1000) / scale;
     $('#outScale').textContent = '1:' + Math.round(scale);
-    $('#outStuds').textContent = Math.round(modelMm / 8) + ' bottoncini';
+    $('#outStuds').textContent = Math.round(modelMm / 8) + ' stud';
     $('#outCm').textContent = (modelMm / 10).toLocaleString('it-IT', { maximumFractionDigits: 1 }) + ' cm';
   }
 
@@ -136,7 +136,7 @@
     const meta = [];
     if (p.pieces) meta.push(fmt(p.pieces) + ' pezzi');
     if (p.hours) meta.push(fmt(p.hours) + ' h');
-    if (p.width) meta.push(p.width + ' bottoncini');
+    if (p.width) meta.push(p.width + ' stud');
     return `
       <button class="card" type="button" data-id="${esc(p.id)}">
         <div class="card-media">${media}
@@ -212,7 +212,7 @@
     const spec = [];
     if (p.pieces) spec.push(['Pezzi', fmt(p.pieces)]);
     if (p.hours) spec.push(['Ore', fmt(p.hours)]);
-    if (p.width) spec.push(['Larghezza', p.width + ' bottoncini']);
+    if (p.width) spec.push(['Larghezza', p.width + ' stud']);
     spec.push(['Stato', STATUS[p.status] || '']);
     $('#projectDetail').innerHTML = `
       <div class="detail-head">
