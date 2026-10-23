@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Passione Briks</title>
+<meta name="description" content="Le costruzioni in mattoncini di Alessio: treni storici, treni LEGO e tutto quello che ho imparato montandoli.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="/styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='10' width='28' height='18' rx='2' fill='%23D7261E'/%3E%3Crect x='6' y='5' width='8' height='6' rx='1' fill='%23D7261E'/%3E%3Crect x='18' y='5' width='8' height='6' rx='1' fill='%23D7261E'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="#top" aria-label="Passione Briks, torna su">
+      <span class="brand-brick" aria-hidden="true"></span>
+      <span>Passione Briks</span>
+    </a>
+    <nav class="nav" aria-label="Sezioni">
+      <a href="#costruzioni">Costruzioni</a>
+      <a href="#mattoncini">Mattoncini</a>
+      <a href="#treni">Treni</a>
+      <a href="#come-si-monta">Come si monta</a>
+      <a href="#messaggi">Messaggi</a>
+    </nav>
+    <button class="btn btn-ghost" id="adminOpen" type="button">Area Alessio</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-in">
+      <div class="hero-text">
+        <p class="eyebrow">Il deposito di Alessio</p>
+        <h1>Costruisco treni,<br>un mattoncino alla volta.</h1>
+        <p class="lead">Qui trovi le mie locomotive e i miei vagoni: treni storici rifatti in mattoncini, treni LEGO<sup>®</sup> montati e modificati, e tutto quello che ho imparato su come si progetta e si costruisce.</p>
+        <div class="hero-stats" id="heroStats" aria-live="polite">
+          <div><b id="statProjects">0</b><span>costruzioni</span></div>
+          <div><b id="statPieces">0</b><span>pezzi usati</span></div>
+          <div><b id="statHours">0</b><span>ore di montaggio</span></div>
+        </div>
+      </div>
+      <div class="hero-scene" aria-hidden="true">
+        <svg id="heroTrain" class="hero-train" viewBox="0 0 520 170" xmlns="http://www.w3.org/2000/svg"></svg>
+        <div class="track"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COSTRUZIONI -->
+  <section id="costruzioni" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Le mie costruzioni</p>
+        <h2>Dal binario di prova alla vetrina</h2>
+        <p class="section-lead">Ogni costruzione ha le foto, i pezzi usati e i passaggi per montarla. Toccane una per aprirla.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filtra per tipo">
+        <button class="chip is-on" data-filter="tutte" type="button">Tutte</button>
+        <button class="chip" data-filter="treni-storici" type="button">Treni storici</button>
+        <button class="chip" data-filter="treni-lego" type="button">Treni LEGO</button>
+        <button class="chip" data-filter="altro" type="button">Altre costruzioni</button>
+      </div>
+      <div class="grid" id="projectGrid"></div>
+      <p class="empty-note" id="emptyNote" hidden>Questa è una costruzione di esempio: sparisce appena Alessio pubblica la sua prima costruzione dall’<button class="linklike" type="button" data-open-admin>Area Alessio</button>.</p>
+    </div>
+  </section>
+
+  <!-- MATTONCINI -->
+  <section id="mattoncini" class="section section-tint">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Officina dei mattoncini</p>
+        <h2>Com’è fatto un mattoncino</h2>
+        <p class="section-lead">Sembra un blocchetto qualsiasi, ma ogni misura è pensata perché tutti i pezzi si incastrino tra loro, anche quelli di sessant’anni fa.</p>
+      </div>
+
+      <div class="anatomy">
+        <figure class="anatomy-fig">
+          <svg viewBox="0 0 440 240" role="img" aria-labelledby="brickTitle" xmlns="http://www.w3.org/2000/svg">
+            <title id="brickTitle">Mattoncino 2x4 visto di lato con le sue misure</title>
+            <!-- bottoncini -->
+            <g class="b-stud">
+              <rect x="66" y="58" width="48" height="17" rx="2"/>
+              <rect x="146" y="58" width="48" height="17" rx="2"/>
+              <rect x="226" y="58" width="48" height="17" rx="2"/>
+              <rect x="306" y="58" width="48" height="17" rx="2"/>
+            </g>
+            <rect class="b-body" x="51" y="75" width="318" height="96" rx="3"/>
+            <!-- misura passo -->
+            <g class="dim">
+              <line x1="90" y1="34" x2="170" y2="34"/>
+              <line x1="90" y1="28" x2="90" y2="52"/>
+              <line x1="170" y1="28" x2="170" y2="52"/>
+              <text x="130" y="24" text-anchor="middle">8 mm</text>
+            </g>
+            <!-- diametro bottoncino -->
+            <g class="dim">
+              <line x1="306" y1="44" x2="354" y2="44"/>
+              <text x="330" y="36" text-anchor="middle">Ø 4,8</text>
+            </g>
+            <!-- altezza -->
+            <g class="dim">
+              <line x1="392" y1="75" x2="392" y2="171"/>
+              <line x1="384" y1="75" x2="400" y2="75"/>
+              <line x1="384" y1="171" x2="400" y2="171"/>
+              <text x="404" y="128">9,6 mm</text>
+            </g>
+            <!-- larghezza -->
+            <g class="dim">
+              <line x1="51" y1="200" x2="369" y2="200"/>
+              <line x1="51" y1="192" x2="51" y2="208"/>
+              <line x1="369" y1="192" x2="369" y2="208"/>
+              <text x="210" y="226" text-anchor="middle">31,8 mm (4 bottoncini)</text>
+            </g>
+          </svg>
+          <figcaption>Un mattoncino 2×4 visto di lato. Il passo tra un bottoncino e l’altro è di 8 mm; il pezzo misura 0,2 mm in meno per lato, così due mattoncini vicini non si toccano e scivolano al loro posto.</figcaption>
+        </figure>
+
+        <div class="facts">
+          <div class="fact">
+            <h3>La regola dei tre</h3>
+            <div class="stack-demo" aria-hidden="true">
+              <span class="plate"></span><span class="plate"></span><span class="plate"></span>
+              <span class="eq">=</span>
+              <span class="brick1"></span>
+            </div>
+            <p>Tre piastre (3,2 mm ciascuna) sono alte esattamente quanto un mattoncino (9,6 mm). È il trucco che permette di mischiare pezzi bassi e alti senza dislivelli.</p>
+          </div>
+          <div class="fact">
+            <h3>Di che plastica sono</h3>
+            <p>Quasi tutti i mattoncini sono in <b>ABS</b>, una plastica dura e lucida che tiene il colore. Si usa dal 1963, prima si usava una plastica che si deformava con il tempo.</p>
+          </div>
+          <div class="fact">
+            <h3>Come nascono</h3>
+            <p>I granuli di plastica vengono fusi a circa 230 °C e spinti ad alta pressione dentro uno stampo d’acciaio. Dopo pochi secondi il pezzo si raffredda e viene espulso già finito. Gli stampi sono così precisi che la differenza tra due pezzi è di pochi millesimi di millimetro.</p>
+          </div>
+          <div class="fact">
+            <h3>Perché si incastrano</h3>
+            <p>Sotto il mattoncino ci sono dei tubi: i bottoncini del pezzo di sotto si infilano tra i tubi e le pareti e restano stretti. Questo sistema è stato brevettato nel 1958, ed è per questo che un mattoncino di allora si incastra ancora con uno di oggi.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="subhead">I pezzi che uso di più</h3>
+      <div class="parts" id="partsGrid"></div>
+    </div>
+  </section>
+
+  <!-- TRENI -->
+  <section id="treni" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Sui binari della storia</p>
+        <h2>I treni che mi piacciono</h2>
+        <p class="section-lead">Da una parte i treni veri che hanno cambiato il modo di viaggiare, dall’altra come sono cambiati i treni di mattoncini.</p>
+      </div>
+      <div class="timelines">
+        <div>
+          <h3 class="tl-title"><span class="tl-dot tl-dot-red"></span>Treni veri</h3>
+          <ol class="timeline" id="tlReal"></ol>
+        </div>
+        <div>
+          <h3 class="tl-title"><span class="tl-dot tl-dot-yellow"></span>Treni LEGO</h3>
+          <ol class="timeline" id="tlLego"></ol>
+        </div>
+      </div>
+      <aside class="callout">
+        <h3>Napoli–Portici, 3 ottobre 1839</h3>
+        <p>La prima ferrovia d’Italia è partita da Napoli: circa 7 km lungo il mare fino a Portici, con la locomotiva a vapore <i>Bayard</i>. Oggi a Pietrarsa, proprio su quella linea, c’è il Museo Nazionale Ferroviario con le locomotive storiche vere.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- COME SI MONTA -->
+  <section id="come-si-monta" class="section section-tint">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Libretto di istruzioni</p>
+        <h2>Come monto un treno</h2>
+        <p class="section-lead">Il mio metodo quando parto da un treno vero e lo rifaccio in mattoncini.</p>
+      </div>
+
+      <ol class="steps" id="howSteps"></ol>
+
+      <h3 class="subhead">Tecniche da costruttore</h3>
+      <div class="techniques" id="techGrid"></div>
+
+      <div class="calc" id="calc">
+        <div class="calc-head">
+          <h3>Calcolatore di scala</h3>
+          <p>Quanto viene lungo il mio treno in bottoncini? Scrivi le misure del treno vero e scegli quanto largo vuoi il modello.</p>
+        </div>
+        <form class="calc-form" id="calcForm">
+          <label for="calcLen">Lunghezza del treno vero
+            <span class="field-unit"><input id="calcLen" type="number" inputmode="decimal" min="1" max="500" step="0.1" value="26.4"><span>m</span></span>
+          </label>
+          <label for="calcWid">Larghezza del treno vero
+            <span class="field-unit"><input id="calcWid" type="number" inputmode="decimal" min="1" max="5" step="0.05" value="2.88"><span>m</span></span>
+          </label>
+          <fieldset class="calc-width">
+            <legend>Larghezza del modello</legend>
+            <label><input type="radio" name="calcStuds" value="6" checked> 6 bottoncini</label>
+            <label><input type="radio" name="calcStuds" value="7"> 7 bottoncini</label>
+            <label><input type="radio" name="calcStuds" value="8"> 8 bottoncini</label>
+          </fieldset>
+        </form>
+        <div class="calc-out" aria-live="polite">
+          <div><span>Scala</span><b id="outScale">—</b></div>
+          <div><span>Lunghezza</span><b id="outStuds">—</b></div>
+          <div><span>Nella realtà</span><b id="outCm">—</b></div>
+        </div>
+        <p class="calc-note">Esempio già inserito: una carrozza passeggeri lunga 26,4 m e larga 2,88 m. Molti costruttori accorciano un po’ le carrozze rispetto alla scala, così passano meglio nelle curve.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MESSAGGI -->
+  <section id="messaggi" class="section">
+    <div class="wrap messages-wrap">
+      <div class="section-head">
+        <p class="eyebrow">Stazione messaggi</p>
+        <h2>Lascia un messaggio ad Alessio</h2>
+        <p class="section-lead">Ti è piaciuta una costruzione? Hai un’idea per il prossimo treno? Scrivila qui. I messaggi compaiono dopo che Alessio li ha letti.</p>
+      </div>
+      <div class="messages-grid">
+        <form class="msg-form" id="msgForm" novalidate>
+          <label for="msgName">Il tuo nome</label>
+          <input id="msgName" maxlength="40" autocomplete="given-name" required>
+          <label for="msgText">Messaggio</label>
+          <textarea id="msgText" rows="4" maxlength="600" required></textarea>
+          <button class="btn btn-primary" type="submit">Invia messaggio</button>
+          <p class="form-status" id="msgStatus" role="status"></p>
+        </form>
+        <div class="msg-list" id="msgList"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <p><b>Passione Briks</b> · il sito delle costruzioni di Alessio</p>
+    <p class="small">LEGO<sup>®</sup> è un marchio del Gruppo LEGO, che non sponsorizza né approva questo sito. Le costruzioni e le foto sono di Alessio.</p>
+  </div>
+</footer>
+
+<!-- Dettaglio costruzione -->
+<dialog class="sheet" id="projectDialog" aria-labelledby="pdTitle">
+  <div class="sheet-in">
+    <button class="sheet-close" type="button" data-close aria-label="Chiudi">×</button>
+    <div id="projectDetail"></div>
+  </div>
+</dialog>
+
+<!-- Area Alessio -->
+<dialog class="sheet sheet-wide" id="adminDialog" aria-labelledby="adminTitle">
+  <div class="sheet-in">
+    <button class="sheet-close" type="button" data-close aria-label="Chiudi">×</button>
+    <h2 id="adminTitle">Area Alessio</h2>
+
+    <form id="loginForm" class="login" hidden>
+      <p>Scrivi il tuo PIN per aggiungere costruzioni e leggere i messaggi.</p>
+      <label for="pinInput">PIN</label>
+      <input id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" required>
+      <button class="btn btn-primary" type="submit">Entra</button>
+      <p class="form-status" id="loginStatus" role="status"></p>
+    </form>
+
+    <div id="adminPanel" hidden>
+      <div class="tabs" role="tablist">
+        <button class="tab is-on" type="button" role="tab" data-tab="tabProjects" aria-selected="true">Le mie costruzioni</button>
+        <button class="tab" type="button" role="tab" data-tab="tabMessages" aria-selected="false">Messaggi <span class="badge" id="pendingBadge" hidden></span></button>
+        <button class="btn btn-ghost tab-logout" type="button" id="logoutBtn">Esci</button>
+      </div>
+
+      <div id="tabProjects" role="tabpanel">
+        <div class="admin-bar">
+          <button class="btn btn-primary" type="button" id="newProjectBtn">+ Nuova costruzione</button>
+        </div>
+        <ul class="admin-list" id="adminProjects"></ul>
+
+        <form id="projectForm" class="pform" hidden novalidate>
+          <h3 id="pformTitle">Nuova costruzione</h3>
+          <div class="pform-grid">
+            <label class="span2" for="fTitle">Nome della costruzione
+              <input id="fTitle" maxlength="120" required placeholder="Es. Locomotiva a vapore 685">
+            </label>
+            <label for="fCategory">Tipo
+              <select id="fCategory">
+                <option value="treni-storici">Treno storico</option>
+                <option value="treni-lego">Treno LEGO</option>
+                <option value="altro">Altra costruzione</option>
+              </select>
+            </label>
+            <label for="fStatus">Stato
+              <select id="fStatus">
+                <option value="finito">Finito</option>
+                <option value="in-costruzione">In costruzione</option>
+                <option value="idea">Idea per il futuro</option>
+              </select>
+            </label>
+            <label class="span2" for="fReal">Treno vero a cui mi sono ispirato (facoltativo)
+              <input id="fReal" maxlength="160" placeholder="Es. ETR 300 Settebello">
+            </label>
+            <label class="span2" for="fDesc">Racconta la costruzione
+              <textarea id="fDesc" rows="4" maxlength="4000" placeholder="Com’è nata l’idea, cosa è stato difficile, cosa ti piace di più…"></textarea>
+            </label>
+            <label for="fPieces">Pezzi usati
+              <input id="fPieces" type="number" min="0" inputmode="numeric">
+            </label>
+            <label for="fHours">Ore di montaggio
+              <input id="fHours" type="number" min="0" inputmode="numeric">
+            </label>
+            <label for="fWidth">Larghezza (bottoncini)
+              <input id="fWidth" type="number" min="0" inputmode="numeric" placeholder="6">
+            </label>
+          </div>
+
+          <fieldset class="pform-photos">
+            <legend>Foto</legend>
+            <div class="photo-row">
+              <div class="photo-slot" id="coverSlot"></div>
+              <div>
+                <label class="btn btn-ghost file-btn" for="fCover">Scegli la foto principale</label>
+                <input id="fCover" type="file" accept="image/*" class="visually-hidden">
+                <p class="hint">La foto che si vede nella vetrina.</p>
+              </div>
+            </div>
+            <div class="gallery-edit" id="galleryEdit"></div>
+            <label class="btn btn-ghost file-btn" for="fGallery">Aggiungi altre foto</label>
+            <input id="fGallery" type="file" accept="image/*" multiple class="visually-hidden">
+          </fieldset>
+
+          <fieldset class="pform-steps">
+            <legend>Passaggi di montaggio</legend>
+            <p class="hint">Spiega come si monta, un passaggio alla volta. Puoi aggiungere una foto a ogni passaggio.</p>
+            <ol id="stepsEdit" class="steps-edit"></ol>
+            <button class="btn btn-ghost" type="button" id="addStepBtn">+ Aggiungi passaggio</button>
+          </fieldset>
+
+          <div class="pform-actions">
+            <button class="btn btn-primary" type="submit" id="saveProjectBtn">Pubblica</button>
+            <button class="btn btn-ghost" type="button" id="cancelProjectBtn">Annulla</button>
+            <p class="form-status" id="projectStatus" role="status"></p>
+          </div>
+        </form>
+      </div>
+
+      <div id="tabMessages" role="tabpanel" hidden>
+        <ul class="admin-list" id="adminMessages"></ul>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script src="/app.js"></script>
+</body>
+</html>
