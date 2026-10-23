@@ -187,10 +187,10 @@
 
   function renderProjects() {
     renderHero();
-    const list = projects.length ? projects : [EXAMPLE];
-    const shown = list.filter((p) => filter === 'tutte' || p.category === filter);
-    $('#projectGrid').innerHTML = shown.length ? shown.map(cardHtml).join('') : `<p class="msg-empty">Ancora nessuna costruzione in questa categoria.</p>`;
-    $('#emptyNote').hidden = projects.length > 0;
+    const shown = projects.filter((p) => filter === 'tutte' || p.category === filter);
+    $('#projectGrid').innerHTML = shown.length ? shown.map(cardHtml).join('')
+      : projects.length ? `<p class="msg-empty">Ancora nessuna costruzione in questa categoria.</p>`
+      : `<div class="empty-build"><b>Qui arriveranno le costruzioni di Alessio</b><span>Ogni treno che monta avrà le sue foto, i pezzi usati e i passaggi per rifarlo. Il primo è in arrivo.</span></div>`;
     const real = projects;
     animateNum($('#statProjects'), real.length);
     animateNum($('#statPieces'), real.reduce((a, p) => a + (p.pieces || 0), 0));
@@ -206,7 +206,7 @@
   }
 
   function openProject(id) {
-    const p = (projects.length ? projects : [EXAMPLE]).find((x) => x.id === id);
+    const p = projects.find((x) => x.id === id);
     if (!p) return;
     const photos = [p.cover, ...(p.gallery || [])].filter(Boolean);
     const spec = [];
