@@ -452,3 +452,16 @@ legend { font-weight: 700; padding: 0 .3rem; }
 .home-admin-actions { display: flex; flex-wrap: wrap; gap: var(--s2); }
 .home-cap-row { display: flex; flex-wrap: wrap; gap: var(--s2); }
 .home-cap-row input { flex: 1 1 220px; width: auto; }
+
+/* Treno a tutta larghezza sopra il binario (sostituisce il riquadro) */
+.home-shot { margin: var(--s5) 0 0; background: none; box-shadow: none; border: 0; border-radius: 0; overflow: hidden; }
+.home-shot img {
+  width: 100%; max-width: 100%; max-height: 440px; aspect-ratio: auto; object-fit: contain; display: block; margin: 0 auto;
+  position: relative; z-index: 1; margin-bottom: -10px;
+  animation: roll-in 2.6s cubic-bezier(.2,.7,.2,1) both;
+}
+.home-shot.is-own img { width: auto; border-radius: var(--r); margin-bottom: 6px; }
+.home-shot .track { height: 22px; }
+.home-shot figcaption { display: block; padding-block: var(--s3) 0; font-size: .9rem; color: var(--muted); }
+.home-shot figcaption b { font: 700 .95rem var(--f-body); color: var(--ink); }
+@media (prefers-reduced-motion: reduce) { .home-shot img { animation: none; } }

@@ -154,18 +154,22 @@
       </button>`;
   }
 
-  // Foto della home: quella caricata da Alessio, altrimenti public/foto-home.jpg se esiste
+  // Foto della home: quella caricata da Alessio, altrimenti public/foto-home.webp se esiste
   let staticHomeOk = null;
   function renderHero() {
     const shot = $('#homeShot'), img = $('#homeShotImg');
-    const src = collection.homePhoto ? imgUrl(collection.homePhoto) : (staticHomeOk === false ? '' : '/foto-home.jpg');
+    const src = collection.homePhoto ? imgUrl(collection.homePhoto) : (staticHomeOk === false ? '' : '/foto-home.webp');
     if (src) {
       if (img.getAttribute('src') !== src) {
         img.onload = () => { if (!collection.homePhoto) staticHomeOk = true; shot.hidden = false; renderHero(); };
         img.onerror = () => { if (!collection.homePhoto) staticHomeOk = false; shot.hidden = true; renderHero(); };
         img.setAttribute('src', src);
       }
-      $('#homeShotCap').textContent = collection.homeCaption || 'Il mio Orient Express LEGO';
+      const own = !!collection.homePhoto;
+      $('#homeShotCap').textContent = own ? (collection.homeCaption || 'Il mio Orient Express LEGO') : 'The Orient Express Train, set 21344: il treno LEGO di Alessio.';
+      $('#homeShotCredit').textContent = own ? '' : 'Immagine © LEGO Group.';
+      img.alt = own ? (collection.homeCaption || 'Il treno LEGO di Alessio') : 'Il set LEGO The Orient Express Train: locomotiva a vapore blu e nera con tender e due carrozze blu e oro';
+      shot.classList.toggle('is-own', own);
     } else { shot.hidden = true; }
     const showingShot = !shot.hidden;
     const f = !showingShot && projects.find((p) => p.featured && p.cover);
