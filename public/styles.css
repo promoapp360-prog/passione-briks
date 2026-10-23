@@ -16,8 +16,8 @@
   --ok: #1E7A45;
   --shadow: 0 1px 0 rgba(20, 32, 43, .06), 0 6px 18px rgba(20, 32, 43, .08);
 
-  --f-display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
-  --f-body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-display: "Poppins", system-ui, sans-serif;
+  --f-body: "Poppins", system-ui, sans-serif;
   --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
   --s1: .25rem; --s2: .5rem; --s3: .75rem; --s4: 1rem; --s5: 1.5rem; --s6: 2rem; --s7: 3rem; --s8: 4.5rem;
@@ -131,7 +131,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     repeating-linear-gradient(90deg, var(--sleeper) 0 14px, transparent 14px 30px) 0 0 / 100% 22px no-repeat;
   border-radius: 2px;
 }
-@keyframes roll-in { from { transform: translateX(-110%); } to { transform: translateX(0); } }
+@keyframes roll-in { from { transform: translateX(16px); opacity: .2; } to { transform: translateX(0); opacity: 1; } }
 .hero-train { animation: roll-in 2.4s cubic-bezier(.2,.7,.2,1) both; }
 @media (prefers-reduced-motion: reduce) { .hero-train { animation: none; } html { scroll-behavior: auto; } }
 @media (max-width: 860px) { .hero-in { grid-template-columns: 1fr; } }

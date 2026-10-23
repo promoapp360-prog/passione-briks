@@ -608,9 +608,9 @@
 
   /* ---------------- Eventi ---------------- */
   function bind() {
-    $$('.filters .chip').forEach((c) => c.addEventListener('click', () => {
+    $$('.filters .chip[data-filter]').forEach((c) => c.addEventListener('click', () => {
       filter = c.dataset.filter;
-      $$('.filters .chip').forEach((x) => x.classList.toggle('is-on', x === c));
+      $$('.filters .chip[data-filter]').forEach((x) => x.classList.toggle('is-on', x === c));
       renderProjects();
     }));
     $('#heroPhoto').addEventListener('click', () => openProject($('#heroPhoto').dataset.id));
