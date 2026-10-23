@@ -33,39 +33,6 @@
   const CAT = { 'treni-storici': 'Treno storico', 'treni-lego': 'Treno LEGO', 'altro': 'Altra costruzione' };
   const STATUS = { 'finito': 'Finito', 'in-costruzione': 'In costruzione', 'idea': 'Idea' };
 
-  /* ---------------- Hero: treno di mattoncini ---------------- */
-  function drawHeroTrain() {
-    const svg = $('#heroTrain');
-    const r = (x, y, w, h, c, rx = 2) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}" class="${c}"/>`;
-    const studs = (x0, x1, y, c) => { let s = ''; for (let x = x0; x + 10 <= x1; x += 16) s += r(x, y, 10, 6, c, 1.5); return s; };
-    const wheel = (cx, cy, rad) => `<circle cx="${cx}" cy="${cy}" r="${rad}" class="p-dark"/><circle cx="${cx}" cy="${cy}" r="${rad * .35}" class="p-fill"/>`;
-    let g = '';
-    // carrozza
-    g += studs(22, 252, 44, 'p-dark');
-    g += r(14, 50, 242, 12, 'p-dark');
-    g += r(20, 62, 230, 66, 'p-fill-2');
-    for (let x = 34; x < 236; x += 42) g += r(x, 74, 28, 24, 'p-hole');
-    g += r(20, 106, 230, 6, 'p-fill', 0);
-    g += r(24, 128, 222, 10, 'p-dark');
-    g += wheel(52, 148, 11) + wheel(82, 148, 11) + wheel(188, 148, 11) + wheel(218, 148, 11);
-    g += r(246, 131, 20, 4, 'p-dark', 1);
-    // locomotiva a vapore
-    g += r(262, 125, 244, 12, 'p-dark');
-    g += studs(272, 334, 26, 'p-dark');
-    g += r(264, 32, 74, 10, 'p-dark');
-    g += r(270, 42, 62, 83, 'p-fill-2');
-    g += r(284, 54, 34, 26, 'p-hole');
-    g += r(332, 70, 160, 55, 'p-dark', 4);
-    g += studs(340, 488, 64, 'p-dark');
-    g += r(362, 70, 6, 55, 'p-fill', 0) + r(420, 70, 6, 55, 'p-fill', 0);
-    g += r(396, 56, 26, 16, 'p-dark', 7);
-    g += r(456, 44, 18, 28, 'p-dark', 2) + r(452, 40, 26, 7, 'p-dark', 2);
-    g += r(492, 116, 16, 12, 'p-fill-2');
-    g += wheel(360, 142, 17) + wheel(402, 142, 17) + wheel(444, 142, 17) + wheel(486, 150, 9) + wheel(292, 150, 9);
-    g += r(356, 138, 92, 5, 'p-fill-2', 2);
-    svg.innerHTML = g;
-  }
-
   /* ---------------- Pezzi ---------------- */
   function sidePart({ w, plates, studs = true, studsAt }) {
     const W = 200, base = 64, u = 20, ph = 8;
@@ -187,9 +154,21 @@
       </button>`;
   }
 
+  // Foto della home: quella caricata da Alessio, altrimenti public/foto-home.jpg se esiste
+  let staticHomeOk = null;
   function renderHero() {
-    const f = projects.find((p) => p.featured && p.cover);
-    $('#heroDrawing').hidden = !!f;
+    const shot = $('#homeShot'), img = $('#homeShotImg');
+    const src = collection.homePhoto ? imgUrl(collection.homePhoto) : (staticHomeOk === false ? '' : '/foto-home.jpg');
+    if (src) {
+      if (img.getAttribute('src') !== src) {
+        img.onload = () => { if (!collection.homePhoto) staticHomeOk = true; shot.hidden = false; renderHero(); };
+        img.onerror = () => { if (!collection.homePhoto) staticHomeOk = false; shot.hidden = true; renderHero(); };
+        img.setAttribute('src', src);
+      }
+      $('#homeShotCap').textContent = collection.homeCaption || 'Il mio Orient Express LEGO';
+    } else { shot.hidden = true; }
+    const showingShot = !shot.hidden;
+    const f = !showingShot && projects.find((p) => p.featured && p.cover);
     $('#heroPhoto').hidden = !f;
     if (!f) return;
     $('#heroPhotoImg').src = imgUrl(f.cover);
@@ -289,9 +268,23 @@
     if (!$('#loginForm').hidden) setTimeout(() => $('#pinInput').focus(), 50);
   }
 
+  function renderHomeAdmin() {
+    $('#homeSlot').innerHTML = collection.homePhoto ? `<img src="${imgUrl(collection.homePhoto)}" alt="Foto della home">` : 'Nessuna foto';
+    $('#hRemove').hidden = !collection.homePhoto;
+    if (document.activeElement !== $('#hCap')) $('#hCap').value = collection.homeCaption || '';
+  }
+  async function saveHome(msg) {
+    const st = $('#homeStatus');
+    try {
+      collection = { ...collection, ...(await api('/api/collection', { method: 'PUT', body: JSON.stringify(collection) })) };
+      st.className = 'form-status ok'; st.textContent = msg;
+    } catch (e) { if (!handleAuthError(e)) { st.className = 'form-status err'; st.textContent = e.message; } }
+    renderHomeAdmin(); renderHero();
+  }
+
   function showPanel() {
     $('#loginForm').hidden = true; $('#adminPanel').hidden = false;
-    renderAdminProjects(); loadAdminMessages(); renderCatalog();
+    renderAdminProjects(); loadAdminMessages(); renderCatalog(); renderHomeAdmin();
   }
 
   function logout() { token = ''; store.del('pb_token'); $('#adminPanel').hidden = true; $('#loginForm').hidden = false; $('#pinInput').value = ''; renderCatalog(); }
@@ -513,6 +506,7 @@
     if (!catalog.length) return;
     renderEraBar();
     renderHeroSet();
+    renderHero();
     const q = catQuery.trim().toLowerCase();
     const match = (s) => {
       if (catKind === 'mine' && !collection.owned.includes(s.n) && !collection.wish.includes(s.n)) return false;
@@ -636,6 +630,15 @@
       if (t.dataset.tab === 'tabMessages') loadAdminMessages();
     }));
 
+    $('#hFile').addEventListener('change', async (e) => {
+      const f = e.target.files[0]; e.target.value = ''; if (!f) return;
+      const st = $('#homeStatus'); st.className = 'form-status'; st.textContent = 'Carico la foto…';
+      try { collection.homePhoto = await uploadFile(f); await saveHome('Fatto: la foto è nella home.'); }
+      catch (err) { if (!handleAuthError(err)) { st.className = 'form-status err'; st.textContent = err.message; } }
+    });
+    $('#hRemove').addEventListener('click', () => { collection.homePhoto = null; saveHome('Foto tolta dalla home.'); });
+    $('#hCapSave').addEventListener('click', () => { collection.homeCaption = $('#hCap').value.trim(); saveHome('Scritta salvata.'); });
+
     $('#newProjectBtn').addEventListener('click', () => startEdit(null));
     $('#cancelProjectBtn').addEventListener('click', () => { $('#projectForm').hidden = true; draft = null; });
     $('#projectForm').addEventListener('submit', saveProject);
@@ -696,7 +699,6 @@
     });
   }
 
-  drawHeroTrain();
   renderParts();
   renderTl($('#tlReal'), TL_REAL);
   renderTl($('#tlLego'), TL_LEGO);

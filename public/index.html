@@ -47,10 +47,10 @@
         </div>
       </div>
       <div class="hero-scene">
-        <div id="heroDrawing" aria-hidden="true">
-          <svg id="heroTrain" class="hero-train" viewBox="0 0 520 170" xmlns="http://www.w3.org/2000/svg"></svg>
-          <div class="track"></div>
-        </div>
+        <figure class="home-shot" id="homeShot" hidden>
+          <img id="homeShotImg" alt="L’Orient Express LEGO di Alessio">
+          <figcaption><span class="eyebrow">Dalla collezione di Alessio</span><b id="homeShotCap">Il mio Orient Express LEGO</b></figcaption>
+        </figure>
         <button class="hero-photo" id="heroPhoto" type="button" hidden>
           <img id="heroPhotoImg" alt="">
           <span class="hero-photo-cap"><span class="eyebrow">In vetrina</span><b id="heroPhotoTitle"></b><span id="heroPhotoMeta"></span></span>
@@ -338,6 +338,24 @@
       </div>
 
       <div id="tabProjects" role="tabpanel">
+        <section class="home-admin">
+          <h3>Foto della home</h3>
+          <p class="hint">La foto grande che si vede appena si apre il sito. Fotografa il tuo Orient Express (o il treno che preferisci) in orizzontale, con una bella luce.</p>
+          <div class="photo-row">
+            <div class="photo-slot" id="homeSlot">Nessuna foto</div>
+            <div class="home-admin-actions">
+              <label class="btn btn-primary file-btn" for="hFile">Scegli la foto</label>
+              <input id="hFile" type="file" accept="image/*" class="visually-hidden">
+              <button class="btn btn-ghost" type="button" id="hRemove">Togli la foto</button>
+            </div>
+          </div>
+          <label for="hCap">Scritta sotto la foto</label>
+          <div class="home-cap-row">
+            <input id="hCap" maxlength="120" placeholder="Il mio Orient Express LEGO">
+            <button class="btn btn-ghost" type="button" id="hCapSave">Salva scritta</button>
+          </div>
+          <p class="form-status" id="homeStatus" role="status"></p>
+        </section>
         <div class="admin-bar">
           <button class="btn btn-primary" type="button" id="newProjectBtn">+ Nuova costruzione</button>
           <p class="hint">Finché sei entrato, nel <a href="#catalogo" data-close>Catalogo</a> trovi i bottoni “Ce l’ho” e “Lo vorrei” accanto a ogni treno.</p>
