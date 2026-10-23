@@ -136,9 +136,18 @@ function cleanProject(body, existing) {
     hours: int(body.hours),
     width: int(body.width),
     cover: body.cover ? str(body.cover, 40) : null,
+    featured: !!body.featured,
     gallery: Array.isArray(body.gallery) ? body.gallery.slice(0, 30).map((g) => str(g, 40)).filter(Boolean) : [],
     steps,
   };
+}
+
+// Una sola costruzione alla volta in home
+async function keepOneFeatured(p) {
+  if (!p.featured) return;
+  for (const other of await store.listProjects()) {
+    if (other.id !== p.id && other.featured) await store.saveProject({ ...other, featured: false });
+  }
 }
 
 const imagesOf = (p) => [p.cover, ...(p.gallery || []), ...(p.steps || []).map((s) => s.image)].filter(Boolean);
@@ -159,6 +168,7 @@ app.get('/api/projects', wrap(async (req, res) => res.json(await store.listProje
 app.post('/api/projects', requireAdmin, wrap(async (req, res) => {
   const p = cleanProject(req.body || {});
   await store.saveProject(p);
+  await keepOneFeatured(p);
   res.status(201).json(p);
 }));
 
@@ -169,6 +179,7 @@ app.put('/api/projects/:id', requireAdmin, wrap(async (req, res) => {
   const keep = new Set(imagesOf(p));
   for (const img of imagesOf(existing)) if (!keep.has(img)) await store.deleteImage(img);
   await store.saveProject(p);
+  await keepOneFeatured(p);
   res.json(p);
 }));
 

@@ -406,3 +406,17 @@ legend { font-weight: 700; padding: 0 .3rem; }
   .row .side { grid-column: 1 / -1; justify-content: flex-start; }
   .pcs { text-align: left; min-width: 0; }
 }
+
+/* Foto in vetrina nella home */
+.hero-photo {
+  display: grid; padding: 0; border: 0; background: var(--surface); cursor: pointer; text-align: left; color: var(--ink); font: inherit;
+  border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow); width: 100%; position: relative;
+  border-bottom: 10px solid var(--rail);
+}
+.hero-photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; max-width: 100%; }
+.hero-photo-cap { display: grid; gap: 2px; padding: var(--s3) var(--s4); }
+.hero-photo-cap b { font: 800 1.25rem var(--f-display); }
+.hero-photo-cap span:last-child { font: 500 .85rem var(--f-mono); color: var(--muted); }
+.hero-photo:hover img { filter: brightness(1.04); }
+.pform-grid .check { display: flex; gap: var(--s2); align-items: center; font-weight: 700; }
+.pform-grid .check input { width: 22px; height: 22px; flex: none; }

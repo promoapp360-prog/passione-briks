@@ -187,7 +187,23 @@
       </button>`;
   }
 
+  function renderHero() {
+    const f = projects.find((p) => p.featured && p.cover);
+    $('#heroDrawing').hidden = !!f;
+    $('#heroPhoto').hidden = !f;
+    if (!f) return;
+    $('#heroPhotoImg').src = imgUrl(f.cover);
+    $('#heroPhotoImg').alt = 'Foto di ' + f.title;
+    $('#heroPhotoTitle').textContent = f.title;
+    const meta = [CAT[f.category]];
+    if (f.pieces) meta.push(fmt(f.pieces) + ' pezzi');
+    if (f.realTrain) meta.push(f.realTrain);
+    $('#heroPhotoMeta').textContent = meta.join(' · ');
+    $('#heroPhoto').dataset.id = f.id;
+  }
+
   function renderProjects() {
+    renderHero();
     const list = projects.length ? projects : [EXAMPLE];
     const shown = list.filter((p) => filter === 'tutte' || p.category === filter);
     $('#projectGrid').innerHTML = shown.length ? shown.map(cardHtml).join('') : `<p class="msg-empty">Ancora nessuna costruzione in questa categoria.</p>`;
@@ -288,7 +304,7 @@
     ul.innerHTML = projects.map((p) => `
       <li class="admin-item" data-id="${esc(p.id)}">
         ${p.cover ? `<img class="thumb" src="${imgUrl(p.cover)}" alt="">` : '<span class="thumb"></span>'}
-        <div class="grow"><b>${esc(p.title)}</b><span>${esc(CAT[p.category])} · ${esc(STATUS[p.status])}</span></div>
+        <div class="grow"><b>${esc(p.title)}</b><span>${esc(CAT[p.category])} · ${esc(STATUS[p.status])}${p.featured ? ' · in home' : ''}</span></div>
         <div class="actions">
           <button class="btn btn-ghost" type="button" data-act="edit">Modifica</button>
           <button class="btn btn-danger" type="button" data-act="del">Elimina</button>
@@ -306,7 +322,7 @@
 
   function startEdit(p) {
     editingId = p ? p.id : null;
-    draft = p ? JSON.parse(JSON.stringify(p)) : { title: '', category: 'treni-storici', status: 'finito', realTrain: '', description: '', pieces: null, hours: null, width: 6, cover: null, gallery: [], steps: [{ text: '', image: null }] };
+    draft = p ? JSON.parse(JSON.stringify(p)) : { featured: false, title: '', category: 'treni-storici', status: 'finito', realTrain: '', description: '', pieces: null, hours: null, width: 6, cover: null, gallery: [], steps: [{ text: '', image: null }] };
     $('#pformTitle').textContent = p ? 'Modifica: ' + p.title : 'Nuova costruzione';
     $('#saveProjectBtn').textContent = p ? 'Salva le modifiche' : 'Pubblica';
     $('#fTitle').value = draft.title || '';
@@ -317,6 +333,7 @@
     $('#fPieces').value = draft.pieces ?? '';
     $('#fHours').value = draft.hours ?? '';
     $('#fWidth').value = draft.width ?? '';
+    $('#fFeatured').checked = !!draft.featured;
     $('#projectStatus').textContent = '';
     renderDraftPhotos(); renderDraftSteps();
     $('#projectForm').hidden = false;
@@ -327,7 +344,7 @@
   function syncDraftFields() {
     draft.title = $('#fTitle').value; draft.category = $('#fCategory').value; draft.status = $('#fStatus').value;
     draft.realTrain = $('#fReal').value; draft.description = $('#fDesc').value;
-    draft.pieces = $('#fPieces').value; draft.hours = $('#fHours').value; draft.width = $('#fWidth').value;
+    draft.pieces = $('#fPieces').value; draft.hours = $('#fHours').value; draft.width = $('#fWidth').value; draft.featured = $('#fFeatured').checked;
     $$('#stepsEdit textarea').forEach((t, i) => { if (draft.steps[i]) draft.steps[i].text = t.value; });
   }
 
@@ -391,6 +408,7 @@
     syncDraftFields();
     const st = $('#projectStatus');
     if (!draft.title.trim()) { st.className = 'form-status err'; st.textContent = 'Dai un nome alla costruzione.'; $('#fTitle').focus(); return; }
+    if (draft.featured && !draft.cover) { st.className = 'form-status err'; st.textContent = 'Per metterla in home serve la foto principale.'; return; }
     const btn = $('#saveProjectBtn'); btn.disabled = true;
     st.className = 'form-status'; st.textContent = 'Salvo…';
     try {
@@ -531,6 +549,7 @@
       $$('.filters .chip').forEach((x) => x.classList.toggle('is-on', x === c));
       renderProjects();
     }));
+    $('#heroPhoto').addEventListener('click', () => openProject($('#heroPhoto').dataset.id));
     $('#projectGrid').addEventListener('click', (e) => { const c = e.target.closest('.card'); if (c) openProject(c.dataset.id); });
 
     $$('dialog').forEach((d) => {

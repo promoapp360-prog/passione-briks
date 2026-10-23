@@ -46,9 +46,15 @@
           <div><b id="statHours">0</b><span>ore di montaggio</span></div>
         </div>
       </div>
-      <div class="hero-scene" aria-hidden="true">
-        <svg id="heroTrain" class="hero-train" viewBox="0 0 520 170" xmlns="http://www.w3.org/2000/svg"></svg>
-        <div class="track"></div>
+      <div class="hero-scene">
+        <div id="heroDrawing" aria-hidden="true">
+          <svg id="heroTrain" class="hero-train" viewBox="0 0 520 170" xmlns="http://www.w3.org/2000/svg"></svg>
+          <div class="track"></div>
+        </div>
+        <button class="hero-photo" id="heroPhoto" type="button" hidden>
+          <img id="heroPhotoImg" alt="">
+          <span class="hero-photo-cap"><span class="eyebrow">In vetrina</span><b id="heroPhotoTitle"></b><span id="heroPhotoMeta"></span></span>
+        </button>
       </div>
     </div>
   </section>
@@ -358,6 +364,9 @@
             </label>
             <label for="fWidth">Larghezza (bottoncini)
               <input id="fWidth" type="number" min="0" inputmode="numeric" placeholder="6">
+            </label>
+            <label class="span2 check" for="fFeatured">
+              <input id="fFeatured" type="checkbox"> Metti in home: questa costruzione appare in grande all’inizio del sito (serve la foto principale)
             </label>
           </div>
 
