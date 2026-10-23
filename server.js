@@ -57,6 +57,8 @@ function fileStore() {
       const db = load(); const m = db.messages.find((x) => x.id === id); if (m) m.approved = approved; save(db);
     },
     async deleteMessage(id) { const db = load(); db.messages = db.messages.filter((m) => m.id !== id); save(db); },
+    async getCollection() { return load().collection || { owned: [], wish: [] }; },
+    async saveCollection(c) { const db = load(); db.collection = c; save(db); },
   };
 }
 
@@ -70,7 +72,10 @@ function pgStore() {
       await q(`CREATE TABLE IF NOT EXISTS pb_projects (id TEXT PRIMARY KEY, data JSONB NOT NULL, created_at TIMESTAMPTZ NOT NULL DEFAULT now())`);
       await q(`CREATE TABLE IF NOT EXISTS pb_images (id TEXT PRIMARY KEY, mime TEXT NOT NULL, data BYTEA NOT NULL)`);
       await q(`CREATE TABLE IF NOT EXISTS pb_messages (id TEXT PRIMARY KEY, name TEXT NOT NULL, text TEXT NOT NULL, approved BOOLEAN NOT NULL DEFAULT false, created_at TIMESTAMPTZ NOT NULL DEFAULT now())`);
+      await q(`CREATE TABLE IF NOT EXISTS pb_kv (k TEXT PRIMARY KEY, v JSONB NOT NULL)`);
     },
+    async getCollection() { const r = await q(`SELECT v FROM pb_kv WHERE k='collection'`); return r.rows[0] ? r.rows[0].v : { owned: [], wish: [] }; },
+    async saveCollection(c) { await q(`INSERT INTO pb_kv (k, v) VALUES ('collection', $1) ON CONFLICT (k) DO UPDATE SET v=EXCLUDED.v`, [c]); },
     async listProjects() { return (await q(`SELECT data FROM pb_projects ORDER BY created_at DESC`)).rows.map((r) => r.data); },
     async getProject(id) { const r = await q(`SELECT data FROM pb_projects WHERE id=$1`, [id]); return r.rows[0] ? r.rows[0].data : null; },
     async saveProject(p) {
@@ -192,6 +197,17 @@ app.get('/img/:id', wrap(async (req, res) => {
   res.set('Content-Type', img.mime);
   res.set('Cache-Control', 'public, max-age=31536000, immutable');
   res.send(img.data);
+}));
+
+// Collezione di Alessio: set del catalogo che ha già e che vorrebbe
+app.get('/api/collection', wrap(async (req, res) => res.json(await store.getCollection())));
+
+app.put('/api/collection', requireAdmin, wrap(async (req, res) => {
+  const list = (v) => [...new Set((Array.isArray(v) ? v : []).map((x) => str(x, 20)).filter(Boolean))].slice(0, 2000);
+  const c = { owned: list(req.body && req.body.owned), wish: list(req.body && req.body.wish) };
+  c.wish = c.wish.filter((x) => !c.owned.includes(x));
+  await store.saveCollection(c);
+  res.json(c);
 }));
 
 app.get('/api/messages', wrap(async (req, res) => {

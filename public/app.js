@@ -275,10 +275,10 @@
 
   function showPanel() {
     $('#loginForm').hidden = true; $('#adminPanel').hidden = false;
-    renderAdminProjects(); loadAdminMessages();
+    renderAdminProjects(); loadAdminMessages(); renderCatalog();
   }
 
-  function logout() { token = ''; store.del('pb_token'); $('#adminPanel').hidden = true; $('#loginForm').hidden = false; $('#pinInput').value = ''; }
+  function logout() { token = ''; store.del('pb_token'); $('#adminPanel').hidden = true; $('#loginForm').hidden = false; $('#pinInput').value = ''; renderCatalog(); }
 
   function handleAuthError(e) { if (e.status === 401) { logout(); $('#loginStatus').className = 'form-status err'; $('#loginStatus').textContent = 'Sessione scaduta: scrivi di nuovo il PIN.'; return true; } return false; }
 
@@ -423,6 +423,107 @@
     } catch (e) { if (!handleAuthError(e)) ul.innerHTML = `<li class="hint">${esc(e.message)}</li>`; }
   }
 
+  /* ---------------- Catalogo di tutti i treni LEGO ---------------- */
+  const ERAS = [
+    { id: 'blu', from: 1964, to: 1979, name: 'Era blu', text: 'Binari blu, treni a pile da 4,5 V e, dal 1969, i primi treni a 12 V con il trasformatore.' },
+    { id: 'grigia', from: 1980, to: 1990, name: 'Era grigia', text: 'Binari grigi, treni a 12 V con scambi e segnali comandati a distanza, e le prime monorotaie.' },
+    { id: '9v', from: 1991, to: 2005, name: '9 Volt', text: 'La corrente passa nelle rotaie di metallo. È l’epoca del Metroliner, del Coccodrillo e dei Santa Fe.' },
+    { id: 'pf', from: 2006, to: 2017, name: 'Telecomando e Power Functions', text: 'Binari di plastica, pile dentro il treno e telecomando: prima a infrarossi, poi con il sistema Power Functions.' },
+    { id: 'pu', from: 2018, to: 2100, name: 'Powered Up', text: 'Treni guidati via Bluetooth anche dal tablet, e grandi modelli da collezione come il Coccodrillo e l’Orient Express.' },
+  ];
+  const SYS = {
+    '4.5V': ['4,5 V', 'Motore a pile da 4,5 V dentro il treno.'],
+    '12V': ['12 V', 'Corrente da un trasformatore collegato ai binari.'],
+    '9V': ['9 V', 'Corrente nelle rotaie di metallo, presa dalle ruote.'],
+    'RC': ['IR', 'Telecomando a infrarossi e pile nel treno.'],
+    'PF': ['Power Functions', 'Motore e telecomando Power Functions.'],
+    'PU': ['Powered Up', 'Motore con Bluetooth, si guida anche dall’app.'],
+    'spinta': ['Senza motore', 'Si spinge a mano o è da esposizione.'],
+    'monorotaia': ['Monorotaia', 'Treno su una sola rotaia, con motore.'],
+    'batteria': ['Motore a pile', 'Motore a batteria incluso nella locomotiva.'],
+    'nd': ['Da verificare', 'Set recente: alimentazione non ancora confermata dalle fonti.'],
+  };
+  const KIND = { treno: 'Treno', vagone: 'Vagone', scenario: 'Stazione / scenario' };
+  let catalog = [];
+  let collection = { owned: [], wish: [] };
+  let catEra = 'blu', catKind = 'tutti', catQuery = '';
+
+  const eraOf = (y) => ERAS.find((e) => y >= e.from && y <= e.to) || ERAS[ERAS.length - 1];
+
+  function renderEraBar() {
+    $('#eraBar').innerHTML = ERAS.map((e) => {
+      const n = catalog.filter((s) => eraOf(s.y) === e).length;
+      const last = Math.max(...catalog.filter((s) => eraOf(s.y) === e).map((s) => s.y), e.from);
+      return `<button class="era${catEra === e.id && !catQuery ? ' is-on' : ''}" type="button" role="tab" aria-selected="${catEra === e.id}" data-era="${e.id}">
+        <b>${esc(e.name)}</b><span>${e.from}–${e.to > 2099 ? last : e.to} · ${n} set</span></button>`;
+    }).join('');
+  }
+
+  function rowHtml(s) {
+    const owned = collection.owned.includes(s.n), wish = collection.wish.includes(s.n);
+    const sys = s.sys ? `<span class="pill pill-${esc(s.sys)}">${esc(SYS[s.sys][0])}${s.opt ? ' · motore a parte' : ''}</span>` : '';
+    const mine = token
+      ? `<button class="own-btn" type="button" data-own="owned" data-n="${esc(s.n)}" aria-pressed="${owned}">Ce l’ho</button><button class="own-btn" type="button" data-own="wish" data-n="${esc(s.n)}" aria-pressed="${wish}">Lo vorrei</button>`
+      : (owned ? '<span class="own own-owned">Ce l’ha Alessio</span>' : wish ? '<span class="own own-wish">Lo vorrebbe</span>' : '');
+    return `<li class="row">
+      <span class="yr">${s.y}</span>
+      <span class="num">${esc(s.n)}</span>
+      <span class="nm"><b>${esc(s.name)}</b><small>${esc(s.line)} · ${esc(KIND[s.k])}</small>${s.note ? `<span class="note">${esc(s.note)}</span>` : ''}</span>
+      <span class="side">${sys}<span class="pcs">${s.p ? fmt(s.p) + ' pezzi' : ''}</span>${mine}</span>
+    </li>`;
+  }
+
+  function renderCatalog() {
+    if (!catalog.length) return;
+    renderEraBar();
+    const q = catQuery.trim().toLowerCase();
+    const match = (s) => {
+      if (catKind === 'mine' && !collection.owned.includes(s.n) && !collection.wish.includes(s.n)) return false;
+      if (catKind !== 'tutti' && catKind !== 'mine' && s.k !== catKind) return false;
+      if (q) return (s.name + ' ' + s.n + ' ' + s.line + ' ' + (s.note || '')).toLowerCase().includes(q);
+      return true;
+    };
+    const across = q || catKind === 'mine';
+    const groups = (across ? ERAS : ERAS.filter((e) => e.id === catEra)).map((e) => ({ e, list: catalog.filter((s) => eraOf(s.y) === e && match(s)) })).filter((g) => g.list.length);
+    const total = groups.reduce((a, g) => a + g.list.length, 0);
+    $('#catCount').textContent = across
+      ? `${total} set trovati in tutte le epoche`
+      : `${total} set in questa epoca · ${catalog.length} set in tutto il catalogo`;
+    $('#catBoard').innerHTML = groups.length
+      ? groups.map(({ e, list }) => `<div class="era-block"><h3>${esc(e.name)}</h3><p>${esc(e.text)}</p><ol class="rows">${list.map(rowHtml).join('')}</ol></div>`).join('')
+      : `<p class="cat-empty">${catKind === 'mine' ? 'Alessio non ha ancora segnato nessun set. Dall’Area Alessio può toccare “Ce l’ho” o “Lo vorrei” accanto a ogni treno.' : 'Nessun set trovato. Prova con un altro nome o numero.'}</p>`;
+  }
+
+  async function loadCatalog() {
+    try {
+      const [cat, col] = await Promise.all([
+        fetch('/treni-lego.json').then((r) => r.json()),
+        api('/api/collection').catch(() => ({ owned: [], wish: [] })),
+      ]);
+      catalog = cat; collection = col;
+      const first = catalog[0].y, last = catalog[catalog.length - 1].y;
+      $('#catLead').textContent = `Ogni set del mondo dei treni LEGO, dal ${first} al ${last}: ${catalog.length} set tra locomotive, vagoni, stazioni, monorotaie e i treni dei temi speciali come Harry Potter e Disney.`;
+      $('#sysLegend').innerHTML = Object.entries(SYS).map(([k, [lab, d]]) => `<div><dt><span class="pill pill-${esc(k)}">${esc(lab)}</span></dt><dd>${esc(d)}</dd></div>`).join('');
+      renderCatalog();
+    } catch {
+      $('#catBoard').innerHTML = '<p class="cat-empty">Il catalogo non si è caricato. Ricarica la pagina tra poco.</p>';
+    }
+  }
+
+  let collSaving = Promise.resolve();
+  function toggleOwn(n, which) {
+    const other = which === 'owned' ? 'wish' : 'owned';
+    const has = collection[which].includes(n);
+    collection[which] = has ? collection[which].filter((x) => x !== n) : [...collection[which], n];
+    if (!has) collection[other] = collection[other].filter((x) => x !== n);
+    renderCatalog();
+    const body = JSON.stringify(collection);
+    collSaving = collSaving.then(() => api('/api/collection', { method: 'PUT', body })).catch((e) => {
+      if (e.status === 401) { logout(); renderCatalog(); }
+      $('#catCount').textContent = 'Non sono riuscito a salvare la collezione: ' + e.message;
+    });
+  }
+
   /* ---------------- Eventi ---------------- */
   function bind() {
     $$('.filters .chip').forEach((c) => c.addEventListener('click', () => {
@@ -449,6 +550,22 @@
         $('#msgText').value = '';
         st.className = 'form-status ok'; st.textContent = 'Messaggio inviato. Comparirà qui dopo che Alessio l’avrà letto.';
       } catch (err) { st.className = 'form-status err'; st.textContent = err.message; }
+    });
+
+    $('#eraBar').addEventListener('click', (e) => {
+      const b = e.target.closest('[data-era]'); if (!b) return;
+      catEra = b.dataset.era; catQuery = ''; $('#catSearch').value = '';
+      if (catKind === 'mine') { catKind = 'tutti'; $$('#catalogo [data-kind]').forEach((x) => x.classList.toggle('is-on', x.dataset.kind === 'tutti')); }
+      renderCatalog();
+    });
+    $('#catSearch').addEventListener('input', (e) => { catQuery = e.target.value; renderCatalog(); });
+    $$('#catalogo [data-kind]').forEach((c) => c.addEventListener('click', () => {
+      catKind = c.dataset.kind;
+      $$('#catalogo [data-kind]').forEach((x) => x.classList.toggle('is-on', x === c));
+      renderCatalog();
+    }));
+    $('#catBoard').addEventListener('click', (e) => {
+      const b = e.target.closest('[data-own]'); if (b) toggleOwn(b.dataset.n, b.dataset.own);
     });
 
     $('#adminOpen').addEventListener('click', openAdmin);
@@ -540,4 +657,5 @@
   bind();
   loadProjects();
   loadMessages();
+  loadCatalog();
 })();

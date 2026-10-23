@@ -23,6 +23,7 @@
       <a href="#costruzioni">Costruzioni</a>
       <a href="#mattoncini">Mattoncini</a>
       <a href="#treni">Treni</a>
+      <a href="#catalogo">Catalogo</a>
       <a href="#come-si-monta">Come si monta</a>
       <a href="#messaggi">Messaggi</a>
     </nav>
@@ -177,6 +178,42 @@
     </div>
   </section>
 
+  <!-- CATALOGO -->
+  <section id="catalogo" class="section section-dark">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Orario generale</p>
+        <h2>Tutti i treni LEGO, dal primo all’ultimo</h2>
+        <p class="section-lead" id="catLead">Ogni set del mondo dei treni LEGO, dal 1964 a oggi: locomotive, vagoni, stazioni, monorotaie e i treni dei temi speciali come Harry Potter e Disney.</p>
+      </div>
+
+      <div class="eras" id="eraBar" role="tablist" aria-label="Epoche"></div>
+
+      <div class="cat-tools">
+        <label class="cat-search" for="catSearch">
+          <span class="visually-hidden">Cerca un set</span>
+          <input id="catSearch" type="search" placeholder="Cerca per nome o numero, es. Crocodile o 4558" autocomplete="off">
+        </label>
+        <div class="filters" role="group" aria-label="Tipo di set">
+          <button class="chip is-on" type="button" data-kind="tutti">Tutti</button>
+          <button class="chip" type="button" data-kind="treno">Treni</button>
+          <button class="chip" type="button" data-kind="vagone">Vagoni</button>
+          <button class="chip" type="button" data-kind="scenario">Stazioni e scenari</button>
+          <button class="chip" type="button" data-kind="mine">La collezione di Alessio</button>
+        </div>
+      </div>
+
+      <p class="cat-count" id="catCount" aria-live="polite"></p>
+      <div class="board" id="catBoard"></div>
+
+      <div class="legend">
+        <h3>Come leggere la tabella</h3>
+        <dl id="sysLegend"></dl>
+        <p class="small">I nomi sono quelli originali dei set. Non sono inclusi i set DUPLO per i più piccoli, i binari e i motori venduti da soli. Fonti: database pubblico dei set LEGO (Rebrickable), Brickset, LEGO.com, Brick Fanatics ed Eurobricks. Dove l’alimentazione di un set recente non è confermata è scritto “da verificare”.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- COME SI MONTA -->
   <section id="come-si-monta" class="section section-tint">
     <div class="wrap">
@@ -283,6 +320,7 @@
       <div id="tabProjects" role="tabpanel">
         <div class="admin-bar">
           <button class="btn btn-primary" type="button" id="newProjectBtn">+ Nuova costruzione</button>
+          <p class="hint">Finché sei entrato, nel <a href="#catalogo" data-close>Catalogo</a> trovi i bottoni “Ce l’ho” e “Lo vorrei” accanto a ogni treno.</p>
         </div>
         <ul class="admin-list" id="adminProjects"></ul>
 

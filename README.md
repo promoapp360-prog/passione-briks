@@ -7,6 +7,7 @@ Il sito delle costruzioni in mattoncini di Alessio: treni storici, treni LEGO®,
 - **Costruzioni** — vetrina con foto, pezzi usati, ore di montaggio e passaggi di montaggio stile libretto di istruzioni. Filtri: treni storici, treni LEGO, altre costruzioni.
 - **Officina dei mattoncini** — misure di un mattoncino, materiali, come nascono, i pezzi più usati.
 - **Treni** — due linee del tempo (treni veri e treni LEGO) e la Napoli–Portici.
+- **Catalogo** — tutti i treni LEGO dal 1964 al 2026 (228 set: locomotive, vagoni, stazioni, monorotaie, treni dei temi speciali), divisi per epoca con ricerca e filtri. Alessio, entrato con il PIN, segna i set che ha ("Ce l'ho") e quelli che vorrebbe. I dati sono in `public/treni-lego.json`.
 - **Come si monta** — metodo in 6 passaggi, tecniche (SNOT, offset, telaio…) e calcolatore di scala.
 - **Messaggi** — chiunque può lasciare un messaggio; compare sul sito solo dopo che Alessio lo approva.
 - **Area Alessio** (bottone in alto) — con il PIN Alessio aggiunge, modifica ed elimina costruzioni, carica foto dal tablet e approva i messaggi.

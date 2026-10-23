@@ -1,0 +1,2044 @@
+[
+{
+"n": "323",
+"name": "Train",
+"y": 1964,
+"p": 253,
+"sys": "spinta",
+"line": "Trains",
+"k": "treno",
+"note": "Il treno più antico del catalogo: si spingeva a mano, prima dei binari LEGO."
+},
+{
+"n": "111-2",
+"name": "Starter Train Set without Motor",
+"y": 1966,
+"p": 118,
+"sys": "spinta",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "112-2",
+"name": "Locomotive with Motor",
+"y": 1966,
+"p": 74,
+"sys": "4.5V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "113-2",
+"name": "Motorized Train Set",
+"y": 1966,
+"p": 344,
+"sys": "4.5V",
+"line": "Trains",
+"k": "treno",
+"note": "Uno dei primi treni a motore del 1966, con la batteria da 4,5 V nel vagone."
+},
+{
+"n": "114-2",
+"name": "Small Train Set",
+"y": 1966,
+"p": 88,
+"sys": "4.5V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "115-2",
+"name": "Starter Train Set with Motor",
+"y": 1966,
+"p": 132,
+"sys": "4.5V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "152",
+"name": "Two Train Wagons",
+"y": 1966,
+"p": 22,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "153",
+"name": "Large Train Wagon",
+"y": 1966,
+"p": 15,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "080",
+"name": "Basic Building Set with Train",
+"y": 1967,
+"p": 710,
+"sys": "spinta",
+"line": "Classic",
+"k": "treno"
+},
+{
+"n": "116",
+"name": "Starter Train Set with Motor",
+"y": 1967,
+"p": 364,
+"sys": "4.5V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "117",
+"name": "Locomotive without Motor",
+"y": 1967,
+"p": 99,
+"sys": "spinta",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "116-2",
+"name": "Deluxe Motorized Train Set",
+"y": 1968,
+"p": 361,
+"sys": "4.5V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "118",
+"name": "Electronic Train",
+"y": 1968,
+"p": 103,
+"sys": "4.5V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "118-2",
+"name": "Small Train Set",
+"y": 1968,
+"p": 117,
+"sys": "4.5V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "119",
+"name": "Super Train Set",
+"y": 1968,
+"p": 401,
+"sys": "4.5V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "118-3",
+"name": "Motorized Freight or Passenger Train (Sears Exclusive)",
+"y": 1969,
+"p": 419,
+"sys": "4.5V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "120",
+"name": "Complete Freight Train Set with Tipper Trucks",
+"y": 1969,
+"p": 163,
+"sys": "4.5V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "122",
+"name": "Loco and Tender",
+"y": 1969,
+"p": 96,
+"sys": "4.5V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "123",
+"name": "Passenger Coach",
+"y": 1969,
+"p": 98,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "124",
+"name": "Goods Wagon",
+"y": 1969,
+"p": 56,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "125",
+"name": "Tipping Wagon",
+"y": 1969,
+"p": 20,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "127",
+"name": "Train Set",
+"y": 1969,
+"p": 365,
+"sys": "4.5V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "138",
+"name": "Electronic Train",
+"y": 1969,
+"p": 107,
+"sys": "4.5V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "720-2",
+"name": "Train with 12V Electric Motor",
+"y": 1969,
+"p": 357,
+"sys": "12V",
+"line": "Trains",
+"k": "treno",
+"note": "Il primo treno a 12 V: prende la corrente da un trasformatore."
+},
+{
+"n": "721",
+"name": "Steam Locomotive",
+"y": 1969,
+"p": 114,
+"sys": "12V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "126",
+"name": "Steam Locomotive (Push)",
+"y": 1970,
+"p": 60,
+"sys": "spinta",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "722-2",
+"name": "12V Electric Train with 2 Wagons",
+"y": 1970,
+"p": 151,
+"sys": "12V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "723",
+"name": "Diesel Locomotive",
+"y": 1970,
+"p": 95,
+"sys": "12V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "24",
+"name": "Minitalia Train",
+"y": 1971,
+"p": 77,
+"sys": "spinta",
+"line": "Minitalia",
+"k": "treno"
+},
+{
+"n": "128-2",
+"name": "Mobile Crane (Train Base)",
+"y": 1972,
+"p": 23,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "130",
+"name": "Wagon with Double Tippers",
+"y": 1972,
+"p": 20,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "131",
+"name": "Passenger Coach",
+"y": 1972,
+"p": 66,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "132-2",
+"name": "Port Crane and Flat Waggon",
+"y": 1972,
+"p": 58,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "170",
+"name": "Push Along Play Train",
+"y": 1972,
+"p": 87,
+"sys": "spinta",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "171",
+"name": "Complete Train Set Without Motor",
+"y": 1972,
+"p": 146,
+"sys": "spinta",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "180",
+"name": "Train with 5 Wagons and Circle of Track",
+"y": 1972,
+"p": 220,
+"sys": "4.5V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "181",
+"name": "Complete Train Set with Motor, Signals and Switch",
+"y": 1972,
+"p": 143,
+"sys": "4.5V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "724",
+"name": "12V Diesel Locomotive with Crane and Tipper Wagon",
+"y": 1972,
+"p": 150,
+"sys": "12V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "252",
+"name": "Locomotive with Driver & Passenger",
+"y": 1974,
+"p": 115,
+"sys": "spinta",
+"line": "Classic",
+"k": "treno"
+},
+{
+"n": "723-2",
+"name": "Diesel Locomotive with DB Sticker",
+"y": 1974,
+"p": 93,
+"sys": "12V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "725-2",
+"name": "12V Freight Train and Track",
+"y": 1974,
+"p": 310,
+"sys": "12V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "133",
+"name": "Locomotive (Push)",
+"y": 1975,
+"p": 81,
+"sys": "spinta",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "134",
+"name": "Mobile Crane and Waggon",
+"y": 1975,
+"p": 55,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "136",
+"name": "Tanker Waggon (Shell)",
+"y": 1975,
+"p": 81,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "137-2",
+"name": "Passenger Sleeping Car",
+"y": 1975,
+"p": 81,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "148",
+"name": "Central Station",
+"y": 1975,
+"p": 292,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "182",
+"name": "Train Set with Signal",
+"y": 1975,
+"p": 368,
+"sys": "4.5V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "146",
+"name": "Level Crossing",
+"y": 1976,
+"p": 68,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "147",
+"name": "Refrigerated Car with Forklift",
+"y": 1976,
+"p": 112,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "149",
+"name": "Fuel Refinery",
+"y": 1976,
+"p": 340,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "183",
+"name": "Complete Train Set with Motor and Signal",
+"y": 1976,
+"p": 186,
+"sys": "4.5V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "396",
+"name": "Thatcher Perkins Locomotive",
+"y": 1976,
+"p": 433,
+"sys": "spinta",
+"line": "Hobby Set",
+"k": "treno",
+"note": "Riproduzione di una locomotiva americana dell’Ottocento, della serie Hobby."
+},
+{
+"n": "726",
+"name": "12V Western Train with 2 Wagons and Cowboys",
+"y": 1976,
+"p": 287,
+"sys": "12V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "162",
+"name": "Locomotive without Motor",
+"y": 1977,
+"p": 210,
+"sys": "spinta",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "163",
+"name": "Cargo Wagon",
+"y": 1977,
+"p": 127,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "727",
+"name": "12V Locomotive",
+"y": 1977,
+"p": 133,
+"sys": "12V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "164",
+"name": "Passenger Wagon",
+"y": 1978,
+"p": 145,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "165",
+"name": "Cargo Station",
+"y": 1978,
+"p": 267,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "166",
+"name": "Flat Wagon",
+"y": 1978,
+"p": 51,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "167",
+"name": "Loading Ramp and Car Transport Wagon",
+"y": 1978,
+"p": 100,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "7710",
+"name": "Push-Along Passenger Steam Train",
+"y": 1980,
+"p": 432,
+"sys": "spinta",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "7720",
+"name": "Diesel Freight Train Set",
+"y": 1980,
+"p": 427,
+"sys": "4.5V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "7730",
+"name": "Electric Goods Train",
+"y": 1980,
+"p": 519,
+"sys": "12V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "7740",
+"name": "Inter-City Passenger Train",
+"y": 1980,
+"p": 784,
+"sys": "12V",
+"line": "Trains",
+"k": "treno",
+"note": "Il treno passeggeri Inter-City dell’era grigia, uno dei più amati."
+},
+{
+"n": "7750",
+"name": "Steam Engine",
+"y": 1980,
+"p": 267,
+"sys": "12V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "7760",
+"name": "Diesel Shunter Locomotive",
+"y": 1980,
+"p": 151,
+"sys": "12V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "7810",
+"name": "Push-Along Steam Engine",
+"y": 1980,
+"p": 96,
+"sys": "spinta",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "7814",
+"name": "Crane Wagon with Small Container",
+"y": 1980,
+"p": 113,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "7816",
+"name": "Shell Tanker Wagon",
+"y": 1980,
+"p": 111,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "7818",
+"name": "Passenger Carriage",
+"y": 1980,
+"p": 115,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "7820",
+"name": "Mail Van",
+"y": 1980,
+"p": 211,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "7822",
+"name": "Railway Station",
+"y": 1980,
+"p": 382,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "7834",
+"name": "Level Crossing Manual",
+"y": 1980,
+"p": 95,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "7725",
+"name": "Electric Passenger Train",
+"y": 1981,
+"p": 488,
+"sys": "12V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "7727",
+"name": "Freight Steam Train",
+"y": 1983,
+"p": 569,
+"sys": "12V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "7755",
+"name": "Diesel Heavy Shunting Locomotive",
+"y": 1983,
+"p": 163,
+"sys": "12V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "7815",
+"name": "Passenger Carriage / Sleeper",
+"y": 1983,
+"p": 228,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "7819",
+"name": "Postal Container Wagon Covered",
+"y": 1983,
+"p": 182,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "7821",
+"name": "Overhead Gantry and Lighting Maintenance Wagon",
+"y": 1983,
+"p": 90,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "7824",
+"name": "Railway Station",
+"y": 1983,
+"p": 478,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "7838",
+"name": "Freight Loading Depot with Wagon",
+"y": 1983,
+"p": 324,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "7866",
+"name": "Remote Controlled Road Crossing",
+"y": 1983,
+"p": 194,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "7715",
+"name": "Push-Along Passenger Steam Train",
+"y": 1985,
+"p": 448,
+"sys": "spinta",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "7722",
+"name": "Steam Cargo Train",
+"y": 1985,
+"p": 497,
+"sys": "4.5V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "7735",
+"name": "Freight Train",
+"y": 1985,
+"p": 516,
+"sys": "12V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "7745",
+"name": "High-Speed City Express Passenger Train",
+"y": 1985,
+"p": 735,
+"sys": "12V",
+"line": "Trains",
+"k": "treno",
+"note": "Treno ad alta velocità dell’era grigia, ispirato agli intercity europei."
+},
+{
+"n": "7817",
+"name": "Crane Wagon",
+"y": 1985,
+"p": 148,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "7835",
+"name": "Manual Road Crossing",
+"y": 1985,
+"p": 134,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "7813",
+"name": "Shell Tanker Wagon",
+"y": 1986,
+"p": 120,
+"sys": "4.5V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "7823",
+"name": "Container Crane Depot",
+"y": 1986,
+"p": 483,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "7839",
+"name": "Car Transport Depot",
+"y": 1986,
+"p": 341,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "6990",
+"name": "Monorail Transport System",
+"y": 1988,
+"p": 731,
+"sys": "monorotaia",
+"line": "Space",
+"k": "treno",
+"note": "Una monorotaia spaziale motorizzata: un treno su una sola rotaia."
+},
+{
+"n": "6399",
+"name": "Airport Shuttle",
+"y": 1990,
+"sys": "monorotaia",
+"line": "Town",
+"k": "treno"
+},
+{
+"n": "4536",
+"name": "Blue Hopper Car",
+"y": 1991,
+"p": 165,
+"sys": "9V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "4539",
+"name": "Manual Level Crossing",
+"y": 1991,
+"p": 115,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "4543",
+"name": "Railroad Tractor Flatbed",
+"y": 1991,
+"p": 179,
+"sys": "9V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "4546",
+"name": "Road and Rail Maintenance",
+"y": 1991,
+"p": 76,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "4551",
+"name": "Crocodile Locomotive",
+"y": 1991,
+"p": 313,
+"sys": "9V",
+"line": "Trains",
+"k": "treno",
+"note": "Ispirato al vero “Coccodrillo” svizzero, la locomotiva elettrica marrone."
+},
+{
+"n": "4554",
+"name": "Metro Station",
+"y": 1991,
+"p": 605,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "4558",
+"name": "Metroliner",
+"y": 1991,
+"p": 786,
+"sys": "9V",
+"line": "Trains",
+"k": "treno",
+"note": "Il Metroliner, il primo grande treno passeggeri a 9 V."
+},
+{
+"n": "4563",
+"name": "Load and Haul Railroad",
+"y": 1991,
+"p": 479,
+"sys": "9V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "4537",
+"name": "Octan Twin Tank Rail Tanker",
+"y": 1993,
+"p": 173,
+"sys": "9V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "4547",
+"name": "Club Car",
+"y": 1993,
+"p": 292,
+"sys": "9V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "4549",
+"name": "Container Double Stack",
+"y": 1993,
+"p": 450,
+"sys": "9V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "4525",
+"name": "Road and Rail Repair",
+"y": 1994,
+"p": 84,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "4544",
+"name": "Car Transport Wagon with Car",
+"y": 1994,
+"p": 142,
+"sys": "9V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "4564",
+"name": "Freight Rail Runner",
+"y": 1994,
+"p": 590,
+"sys": "9V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "6991",
+"name": "Monorail Transport Base",
+"y": 1994,
+"p": 571,
+"sys": "monorotaia",
+"line": "Space",
+"k": "treno"
+},
+{
+"n": "4552",
+"name": "Cargo Crane",
+"y": 1995,
+"p": 281,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "4555",
+"name": "Cargo Station",
+"y": 1995,
+"p": 393,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "2150",
+"name": "Train Station",
+"y": 1996,
+"p": 609,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "4532",
+"name": "Manual Level Crossing",
+"y": 1996,
+"p": 135,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "4559",
+"name": "Cargo Railway",
+"y": 1996,
+"p": 845,
+"sys": "9V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "4565",
+"name": "Freight and Crane Railway",
+"y": 1996,
+"p": 915,
+"sys": "9V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "2126",
+"name": "Train Cars",
+"y": 1997,
+"p": 382,
+"sys": "9V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "6497",
+"name": "Twisted Time Train",
+"y": 1997,
+"p": 300,
+"sys": "spinta",
+"line": "Time Cruisers",
+"k": "treno"
+},
+{
+"n": "2585",
+"name": "Handcar",
+"y": 1998,
+"p": 27,
+"sys": "9V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "3225",
+"name": "Classic Train",
+"y": 1998,
+"p": 281,
+"sys": "9V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "4533",
+"name": "Train Track Snow Remover",
+"y": 1999,
+"p": 57,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "4541",
+"name": "Rail and Road Service Truck",
+"y": 1999,
+"p": 126,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "4553",
+"name": "Train Wash",
+"y": 1999,
+"p": 189,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "4556",
+"name": "Train Station",
+"y": 1999,
+"p": 232,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "4557",
+"name": "Freight Loading Station",
+"y": 1999,
+"p": 215,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "4560",
+"name": "Railway Express",
+"y": 1999,
+"p": 690,
+"sys": "9V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "4561",
+"name": "Railway Express with Transformer and Speed Regulator",
+"y": 1999,
+"p": 673,
+"sys": "9V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "10001",
+"name": "Metroliner",
+"y": 2001,
+"p": 785,
+"sys": "9V",
+"line": "Trains",
+"k": "treno",
+"note": "Ristampa del Metroliner per i collezionisti, venduta online."
+},
+{
+"n": "10002",
+"name": "Railroad Club Car",
+"y": 2001,
+"p": 272,
+"sys": "9V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "10013",
+"name": "Open Freight Wagon",
+"y": 2001,
+"p": 121,
+"sys": "9V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "10014",
+"name": "Caboose",
+"y": 2001,
+"p": 170,
+"sys": "9V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "10015",
+"name": "Passenger Wagon",
+"y": 2001,
+"p": 194,
+"sys": "9V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "10016",
+"name": "Tanker",
+"y": 2001,
+"p": 128,
+"sys": "9V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "10017",
+"name": "Hopper Wagon",
+"y": 2001,
+"p": 228,
+"sys": "9V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "3740",
+"name": "Small Locomotive",
+"y": 2001,
+"p": 66,
+"sys": "9V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "3741",
+"name": "Large Locomotive (base unit without color trim elements)",
+"y": 2001,
+"p": 91,
+"sys": "9V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "3742",
+"name": "Tender Basis (without color trim elements)",
+"y": 2001,
+"p": 41,
+"sys": "9V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "3743",
+"name": "Locomotive Blue Bricks",
+"y": 2001,
+"p": 106,
+"sys": "9V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "3744",
+"name": "Locomotive Green Bricks",
+"y": 2001,
+"p": 106,
+"sys": "9V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "3745",
+"name": "Locomotive Black Bricks",
+"y": 2001,
+"p": 106,
+"sys": "9V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "3746",
+"name": "Locomotive Brown Bricks",
+"y": 2001,
+"p": 106,
+"sys": "9V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "3747",
+"name": "Locomotive Gray Bricks",
+"y": 2001,
+"p": 106,
+"sys": "9V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "4708",
+"name": "Hogwarts Express",
+"y": 2001,
+"p": 412,
+"sys": "spinta",
+"line": "Harry Potter",
+"k": "treno",
+"note": "La prima Hogwarts Express, uscita con il primo film di Harry Potter."
+},
+{
+"n": "10020",
+"name": "Santa Fe Super Chief",
+"y": 2002,
+"p": 427,
+"sys": "9V",
+"line": "Trains",
+"k": "treno",
+"note": "Locomotiva diesel americana con i colori rosso e argento della Santa Fe."
+},
+{
+"n": "10022",
+"name": "Santa Fe Cars - Set II (dining, observation, or sleeping car)",
+"y": 2002,
+"p": 410,
+"sys": "9V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "10025",
+"name": "Santa Fe Cars - Set I (mail or baggage car)",
+"y": 2002,
+"p": 325,
+"sys": "9V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "10205",
+"name": "Locomotive",
+"y": 2002,
+"p": 231,
+"sys": "9V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "4534",
+"name": "LEGO Express",
+"y": 2002,
+"p": 34,
+"sys": "9V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "4535",
+"name": "LEGO Express Deluxe",
+"y": 2002,
+"p": 754,
+"sys": "9V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "10027",
+"name": "Train Engine Shed",
+"y": 2003,
+"p": 670,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "10128",
+"name": "Train Level Crossing",
+"y": 2003,
+"p": 326,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "4511",
+"name": "High Speed Train",
+"y": 2003,
+"p": 335,
+"sys": "9V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "4512",
+"name": "Cargo Train",
+"y": 2003,
+"p": 546,
+"sys": "9V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "4513",
+"name": "Grand Central Station",
+"y": 2003,
+"p": 350,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "4514",
+"name": "Cargo Crane",
+"y": 2003,
+"p": 176,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "10132",
+"name": "Motorized Hogwarts Express",
+"y": 2004,
+"p": 693,
+"sys": "batteria",
+"line": "Harry Potter",
+"k": "treno",
+"note": "L’unica Hogwarts Express con motore incluso."
+},
+{
+"n": "10133",
+"name": "Burlington Northern Santa Fe Locomotive",
+"y": 2004,
+"p": 400,
+"sys": "9V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "10157",
+"name": "High Speed Train Locomotive",
+"y": 2004,
+"p": 134,
+"sys": "9V",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "10158",
+"name": "High Speed Train Car",
+"y": 2004,
+"p": 151,
+"sys": "9V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "4758",
+"name": "Hogwarts Express (2nd edition)",
+"y": 2004,
+"p": 368,
+"sys": "spinta",
+"line": "Harry Potter",
+"k": "treno"
+},
+{
+"n": "4855",
+"name": "Spider-Man's Train Rescue",
+"y": 2004,
+"p": 298,
+"sys": "spinta",
+"line": "Spider-Man",
+"k": "treno"
+},
+{
+"n": "10170",
+"name": "TTX Intermodal Double-Stack Car",
+"y": 2005,
+"p": 365,
+"sys": "9V",
+"line": "Trains",
+"k": "vagone"
+},
+{
+"n": "10173",
+"name": "Holiday Train",
+"y": 2006,
+"p": 969,
+"sys": "9V",
+"line": "Trains",
+"k": "treno",
+"note": "Il treno di Natale con la carrozza e il vagone dei regali."
+},
+{
+"n": "7897",
+"name": "Passenger Train",
+"y": 2006,
+"p": 494,
+"sys": "RC",
+"line": "Trains",
+"k": "treno",
+"note": "Il primo treno telecomandato a infrarossi con le pile nel treno."
+},
+{
+"n": "7898",
+"name": "Cargo Train Deluxe",
+"y": 2006,
+"p": 830,
+"sys": "RC",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "10183",
+"name": "Hobby Train",
+"y": 2007,
+"p": 1080,
+"sys": "spinta",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "7997",
+"name": "Train Station",
+"y": 2007,
+"p": 386,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "3830",
+"name": "The Bikini Bottom Express",
+"y": 2008,
+"p": 209,
+"sys": "spinta",
+"line": "SpongeBob",
+"k": "treno"
+},
+{
+"n": "4837",
+"name": "Mini Trains",
+"y": 2008,
+"p": 73,
+"sys": "spinta",
+"line": "Creator",
+"k": "treno"
+},
+{
+"n": "10194",
+"name": "Emerald Night",
+"y": 2009,
+"p": 1089,
+"sys": "PF",
+"line": "Creator Expert",
+"k": "treno",
+"opt": true,
+"note": "Locomotiva a vapore verde in stile britannico, con tender e carrozza."
+},
+{
+"n": "4841",
+"name": "Hogwarts Express (3rd edition)",
+"y": 2010,
+"p": 646,
+"sys": "spinta",
+"line": "Harry Potter",
+"k": "treno"
+},
+{
+"n": "7597",
+"name": "Western Train Chase",
+"y": 2010,
+"p": 584,
+"sys": "spinta",
+"line": "Toy Story",
+"k": "treno"
+},
+{
+"n": "7936",
+"name": "Level Crossing",
+"y": 2010,
+"p": 138,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "7937",
+"name": "Train Station",
+"y": 2010,
+"p": 367,
+"line": "Trains",
+"k": "scenario"
+},
+{
+"n": "7938",
+"name": "Passenger Train",
+"y": 2010,
+"p": 668,
+"sys": "PF",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "7939",
+"name": "Cargo Train",
+"y": 2010,
+"p": 838,
+"sys": "PF",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "10219",
+"name": "Maersk Container Train",
+"y": 2011,
+"p": 1232,
+"sys": "PF",
+"line": "Creator Expert",
+"k": "treno",
+"opt": true,
+"note": "Il lungo treno porta-container blu della compagnia Maersk."
+},
+{
+"n": "3677",
+"name": "Red Cargo Train",
+"y": 2011,
+"p": 826,
+"sys": "PF",
+"line": "Trains",
+"k": "treno"
+},
+{
+"n": "40028",
+"name": "Mini Hogwarts Express",
+"y": 2011,
+"p": 64,
+"sys": "spinta",
+"line": "Harry Potter",
+"k": "treno"
+},
+{
+"n": "40034",
+"name": "Christmas Train",
+"y": 2012,
+"p": 82,
+"sys": "spinta",
+"line": "Stagionali",
+"k": "treno"
+},
+{
+"n": "9467",
+"name": "The Ghost Train",
+"y": 2012,
+"p": 741,
+"sys": "spinta",
+"line": "Monster Fighters",
+"k": "treno"
+},
+{
+"n": "10233",
+"name": "Horizon Express",
+"y": 2013,
+"p": 1349,
+"sys": "PF",
+"line": "Creator Expert",
+"k": "treno",
+"opt": true,
+"note": "Treno passeggeri ad alta velocità ispirato ai TGV."
+},
+{
+"n": "79111",
+"name": "Constitution Train Chase",
+"y": 2013,
+"p": 701,
+"sys": "spinta",
+"line": "The Lone Ranger",
+"k": "treno"
+},
+{
+"n": "31015",
+"name": "Emerald Express",
+"y": 2014,
+"p": 56,
+"sys": "spinta",
+"line": "Creator",
+"k": "treno"
+},
+{
+"n": "4000014",
+"name": "The LEGOLAND Train",
+"y": 2014,
+"p": 545,
+"sys": "spinta",
+"line": "LEGO Store",
+"k": "treno"
+},
+{
+"n": "60050",
+"name": "Train Station",
+"y": 2014,
+"p": 422,
+"line": "City",
+"k": "scenario"
+},
+{
+"n": "60051",
+"name": "High-Speed Passenger Train",
+"y": 2014,
+"p": 608,
+"sys": "PF",
+"line": "City",
+"k": "treno"
+},
+{
+"n": "60052",
+"name": "Cargo Train",
+"y": 2014,
+"p": 887,
+"sys": "PF",
+"line": "City",
+"k": "treno"
+},
+{
+"n": "40138",
+"name": "Christmas Train",
+"y": 2015,
+"p": 233,
+"sys": "spinta",
+"line": "Stagionali",
+"k": "treno"
+},
+{
+"n": "40142",
+"name": "Bricktober Train Station",
+"y": 2015,
+"p": 180,
+"line": "Bricktober",
+"k": "scenario"
+},
+{
+"n": "60098",
+"name": "Heavy-Haul Train",
+"y": 2015,
+"p": 982,
+"sys": "PF",
+"line": "City",
+"k": "treno"
+},
+{
+"n": "10254",
+"name": "Winter Holiday Train",
+"y": 2016,
+"p": 737,
+"sys": "PF",
+"line": "Creator Expert",
+"k": "treno",
+"opt": true,
+"note": "Il treno di Natale con il carro dei regali e la locomotiva verde."
+},
+{
+"n": "40166",
+"name": "LEGOLAND Train",
+"y": 2016,
+"p": 210,
+"sys": "spinta",
+"line": "LEGOLAND",
+"k": "treno"
+},
+{
+"n": "41111",
+"name": "Party Train",
+"y": 2016,
+"p": 109,
+"sys": "spinta",
+"line": "Friends",
+"k": "treno"
+},
+{
+"n": "21130",
+"name": "The Nether Railway",
+"y": 2017,
+"p": 387,
+"sys": "spinta",
+"line": "Minecraft",
+"k": "treno"
+},
+{
+"n": "31054",
+"name": "Blue Express",
+"y": 2017,
+"p": 71,
+"sys": "spinta",
+"line": "Creator",
+"k": "treno"
+},
+{
+"n": "40262",
+"name": "Christmas Train Ride",
+"y": 2017,
+"p": 169,
+"sys": "spinta",
+"line": "Stagionali",
+"k": "treno"
+},
+{
+"n": "30543",
+"name": "Christmas Train",
+"y": 2018,
+"p": 66,
+"sys": "spinta",
+"line": "Stagionali",
+"k": "treno"
+},
+{
+"n": "60197",
+"name": "Passenger Train",
+"y": 2018,
+"p": 677,
+"sys": "PU",
+"line": "City",
+"k": "treno",
+"note": "Il primo treno City con il sistema Powered Up via Bluetooth."
+},
+{
+"n": "60198",
+"name": "Cargo Train",
+"y": 2018,
+"p": 1226,
+"sys": "PU",
+"line": "City",
+"k": "treno"
+},
+{
+"n": "75217",
+"name": "Imperial Conveyex Transport",
+"y": 2018,
+"sys": "spinta",
+"line": "Star Wars",
+"k": "treno"
+},
+{
+"n": "75955",
+"name": "Hogwarts Express",
+"y": 2018,
+"sys": "spinta",
+"line": "Harry Potter",
+"k": "treno"
+},
+{
+"n": "70424",
+"name": "Ghost Train Express",
+"y": 2019,
+"p": 698,
+"sys": "spinta",
+"line": "Hidden Side",
+"k": "treno"
+},
+{
+"n": "71044",
+"name": "Disney Train and Station",
+"y": 2019,
+"p": 2925,
+"sys": "nd",
+"line": "Disney",
+"k": "treno",
+"note": "Il treno a vapore dei parchi Disney con la stazione."
+},
+{
+"n": "10277",
+"name": "Crocodile Locomotive",
+"y": 2020,
+"p": 1271,
+"sys": "PU",
+"line": "Icons",
+"k": "treno",
+"opt": true,
+"note": "Il Coccodrillo svizzero rifatto per i collezionisti, motorizzabile."
+},
+{
+"n": "30575",
+"name": "Train",
+"y": 2020,
+"p": 59,
+"sys": "spinta",
+"line": "Creator",
+"k": "treno"
+},
+{
+"n": "40370",
+"name": "LEGO Trains 40th Anniversary Set",
+"y": 2020,
+"p": 188,
+"sys": "spinta",
+"line": "Promozionali",
+"k": "treno"
+},
+{
+"n": "11945",
+"name": "Steam Locomotive",
+"y": 2021,
+"p": 38,
+"sys": "spinta",
+"line": "Creator",
+"k": "treno"
+},
+{
+"n": "30584",
+"name": "Winter Holiday Train",
+"y": 2022,
+"p": 73,
+"sys": "spinta",
+"line": "Stagionali",
+"k": "treno"
+},
+{
+"n": "40518",
+"name": "High-Speed Train",
+"y": 2022,
+"p": 284,
+"sys": "spinta",
+"line": "Creator",
+"k": "treno"
+},
+{
+"n": "60335",
+"name": "Train Station",
+"y": 2022,
+"p": 907,
+"line": "City",
+"k": "scenario"
+},
+{
+"n": "60336",
+"name": "Freight Train",
+"y": 2022,
+"p": 1153,
+"sys": "PU",
+"line": "City",
+"k": "treno"
+},
+{
+"n": "60337",
+"name": "Express Passenger Train",
+"y": 2022,
+"p": 764,
+"sys": "PU",
+"line": "City",
+"k": "treno"
+},
+{
+"n": "76405",
+"name": "Hogwarts Express – Collectors' Edition",
+"y": 2022,
+"sys": "spinta",
+"line": "Harry Potter",
+"k": "treno",
+"note": "La Hogwarts Express più grande mai fatta, in scala da esposizione."
+},
+{
+"n": "21344",
+"name": "The Orient Express Train",
+"y": 2023,
+"p": 2540,
+"sys": "spinta",
+"line": "Ideas",
+"k": "treno",
+"note": "Il leggendario Orient Express, nato da un’idea di un fan su LEGO Ideas."
+},
+{
+"n": "30642",
+"name": "Birthday Train",
+"y": 2023,
+"p": 58,
+"sys": "spinta",
+"line": "Creator",
+"k": "treno"
+},
+{
+"n": "43212",
+"name": "Disney Celebration Train",
+"y": 2023,
+"p": 200,
+"sys": "spinta",
+"line": "Disney",
+"k": "treno"
+},
+{
+"n": "76423",
+"name": "Hogwarts Express & Hogsmeade Station",
+"y": 2023,
+"sys": "spinta",
+"line": "Harry Potter",
+"k": "treno"
+},
+{
+"n": "40700",
+"name": "Winter Holiday Train",
+"y": 2024,
+"p": 294,
+"sys": "spinta",
+"line": "Creator",
+"k": "treno"
+},
+{
+"n": "60423",
+"name": "Downtown Streetcar",
+"y": 2024,
+"p": 811,
+"sys": "nd",
+"line": "City",
+"k": "treno"
+},
+{
+"n": "71437",
+"name": "The Bowser Express Train",
+"y": 2024,
+"p": 1392,
+"sys": "spinta",
+"line": "Super Mario",
+"k": "treno"
+},
+{
+"n": "10361",
+"name": "Holiday Express Train",
+"y": 2025,
+"p": 956,
+"sys": "PU",
+"line": "Icons",
+"k": "treno",
+"opt": true,
+"note": "Il treno di Natale 2025, pronto per il motore Powered Up."
+},
+{
+"n": "40777",
+"name": "Gingerbread Train Ornament",
+"y": 2025,
+"p": 190,
+"sys": "spinta",
+"line": "Creator",
+"k": "treno"
+},
+{
+"n": "43264",
+"name": "Toy Story Celebration Train & RC Car",
+"y": 2025,
+"p": 206,
+"sys": "spinta",
+"line": "Disney",
+"k": "treno"
+},
+{
+"n": "60469",
+"name": "Central Train Station",
+"y": 2025,
+"p": 752,
+"line": "City",
+"k": "scenario"
+},
+{
+"n": "60470",
+"name": "Explorer Train",
+"y": 2025,
+"sys": "nd",
+"line": "City",
+"k": "treno"
+},
+{
+"n": "60506",
+"name": "Classic Beach Tram",
+"y": 2026,
+"p": 693,
+"sys": "nd",
+"line": "City",
+"k": "treno"
+},
+{
+"n": "60508",
+"name": "Police Train Heist",
+"y": 2026,
+"p": 1313,
+"sys": "nd",
+"line": "City",
+"k": "treno"
+},
+{
+"n": "60509",
+"name": "Harbour Freight Train",
+"y": 2026,
+"p": 803,
+"sys": "nd",
+"line": "City",
+"k": "treno"
+},
+{
+"n": "60511",
+"name": "Vintage Steam Train",
+"y": 2026,
+"p": 575,
+"sys": "nd",
+"line": "City",
+"k": "treno",
+"note": "Locomotiva a vapore d’epoca con tender e carrozza, del 2026."
+}
+]
