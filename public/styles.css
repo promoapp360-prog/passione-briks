@@ -486,3 +486,27 @@ legend { font-weight: 700; padding: 0 .3rem; }
   .row .nm { grid-column: 3; grid-row: 1 / span 2; }
   .row .side { grid-column: 1 / -1; }
 }
+
+/* Perle tecniche */
+.perle-section { padding-top: var(--s7); }
+.perle { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s5); }
+.perla {
+  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: var(--s5); align-items: center;
+  background: var(--panel); border-radius: var(--r); padding: var(--s4);
+}
+.perla-photo { border-radius: 8px; overflow: hidden; background: var(--surface); }
+.perla-photo img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; max-width: 100%; }
+.perla-body { display: grid; gap: var(--s2); min-width: 0; padding: var(--s2); }
+.perla-num {
+  justify-self: start; font: 700 .8rem var(--f-mono); letter-spacing: .1em; text-transform: uppercase;
+  background: var(--signal); color: var(--signal-ink); padding: .35rem .6rem; border-radius: 4px;
+}
+.perla-body h3 { font-size: clamp(1.4rem, 3vw, 2rem); }
+.perla-body p { color: var(--muted); font-size: 1.08rem; max-width: 55ch; }
+.perla:nth-child(even) .perla-photo { order: 2; }
+@media (max-width: 760px) { .perla { grid-template-columns: 1fr; } .perla:nth-child(even) .perla-photo { order: 0; } }
+.check-line { display: flex; gap: var(--s2); align-items: center; font-weight: 700; }
+.check-line input { width: 22px; height: 22px; flex: none; }
+.draft, .live { font: 700 .7rem/1 var(--f-mono); padding: .25rem .45rem; border-radius: 4px; vertical-align: middle; margin-left: .3rem; }
+.draft { border: 1px dashed var(--muted); color: var(--muted); }
+.live { background: var(--ok); color: #fff; }

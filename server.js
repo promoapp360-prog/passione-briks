@@ -59,6 +59,8 @@ function fileStore() {
     async deleteMessage(id) { const db = load(); db.messages = db.messages.filter((m) => m.id !== id); save(db); },
     async getCollection() { return load().collection || { owned: [], wish: [] }; },
     async saveCollection(c) { const db = load(); db.collection = c; save(db); },
+    async getPearls() { return load().pearls || null; },
+    async savePearls(list) { const db = load(); db.pearls = list; save(db); },
   };
 }
 
@@ -76,6 +78,8 @@ function pgStore() {
     },
     async getCollection() { const r = await q(`SELECT v FROM pb_kv WHERE k='collection'`); return r.rows[0] ? r.rows[0].v : { owned: [], wish: [] }; },
     async saveCollection(c) { await q(`INSERT INTO pb_kv (k, v) VALUES ('collection', $1) ON CONFLICT (k) DO UPDATE SET v=EXCLUDED.v`, [c]); },
+    async getPearls() { const r = await q(`SELECT v FROM pb_kv WHERE k='pearls'`); return r.rows[0] ? r.rows[0].v : null; },
+    async savePearls(list) { await q(`INSERT INTO pb_kv (k, v) VALUES ('pearls', $1::jsonb) ON CONFLICT (k) DO UPDATE SET v=EXCLUDED.v`, [JSON.stringify(list)]); },
     async listProjects() { return (await q(`SELECT data FROM pb_projects ORDER BY created_at DESC`)).rows.map((r) => r.data); },
     async getProject(id) { const r = await q(`SELECT data FROM pb_projects WHERE id=$1`, [id]); return r.rows[0] ? r.rows[0].data : null; },
     async saveProject(p) {
@@ -220,6 +224,37 @@ app.put('/api/collection', requireAdmin, wrap(async (req, res) => {
   c.wish = c.wish.filter((x) => !c.owned.includes(x));
   await store.saveCollection(c);
   res.json(c);
+}));
+
+// Le perle tecniche di Alessio. Finché non ne salva di sue, il sito mostra la prima perla di base.
+const DEFAULT_PEARLS = [{
+  id: 'perla-1',
+  title: 'I bottoncini si chiamano stud',
+  text: 'I bottoncini sopra ogni mattoncino si chiamano stud (in inglese, si legge «stad»). È la prima parola da imparare, perché con gli stud si misura tutto: questo mattoncino blu è un 2×6, cioè 2 stud di larghezza e 6 di lunghezza, 12 stud in tutto. Guardali da vicino: su ognuno c’è scritto LEGO.',
+  photo: '/perle/perla-1-stud.webp',
+  published: true,
+}];
+
+app.get('/api/pearls', wrap(async (req, res) => {
+  const all = (await store.getPearls()) || DEFAULT_PEARLS;
+  if (req.query.all === '1') return requireAdmin(req, res, () => res.json(all));
+  res.json(all.filter((x) => x.published !== false));
+}));
+
+app.put('/api/pearls', requireAdmin, wrap(async (req, res) => {
+  const list = (Array.isArray(req.body) ? req.body : []).slice(0, 200).map((x) => ({
+    id: str(x && x.id, 40) || newId(),
+    title: str(x && x.title, 120),
+    text: str(x && x.text, 1500),
+    image: x && x.image ? str(x.image, 40) : null,
+    photo: x && typeof x.photo === 'string' && /^\/perle\/[\w.-]+$/.test(x.photo) ? x.photo : null,
+    published: !!(x && x.published),
+  })).filter((x) => x.title || x.text);
+  const old = (await store.getPearls()) || [];
+  const keep = new Set(list.map((x) => x.image).filter(Boolean));
+  for (const o of old) if (o.image && !keep.has(o.image)) await store.deleteImage(o.image);
+  await store.savePearls(list);
+  res.json(list);
 }));
 
 app.get('/api/messages', wrap(async (req, res) => {

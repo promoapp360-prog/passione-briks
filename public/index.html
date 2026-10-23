@@ -20,6 +20,7 @@
       <span>Passione Briks</span>
     </a>
     <nav class="nav" aria-label="Sezioni">
+      <a href="#perle">Perle</a>
       <a href="#costruzioni">Costruzioni</a>
       <a href="#mattoncini">Mattoncini</a>
       <a href="#treni">Treni</a>
@@ -74,6 +75,18 @@
       <div class="track" aria-hidden="true"></div>
       <figcaption class="wrap"><b id="homeShotCap"></b> <span id="homeShotCredit"></span></figcaption>
     </figure>
+  </section>
+
+  <!-- PERLE TECNICHE -->
+  <section id="perle" class="section perle-section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Le perle tecniche di Alessio</p>
+        <h2>Le regole del costruttore, una alla volta</h2>
+        <p class="section-lead">Le cose che ho imparato montando: parole, misure e trucchi per costruire meglio.</p>
+      </div>
+      <ol class="perle" id="perleList"></ol>
+    </div>
   </section>
 
   <!-- COSTRUZIONI -->
@@ -344,6 +357,7 @@
     <div id="adminPanel" hidden>
       <div class="tabs" role="tablist">
         <button class="tab is-on" type="button" role="tab" data-tab="tabProjects" aria-selected="true">Le mie costruzioni</button>
+        <button class="tab" type="button" role="tab" data-tab="tabPearls" aria-selected="false">Perle tecniche</button>
         <button class="tab" type="button" role="tab" data-tab="tabMessages" aria-selected="false">Messaggi <span class="badge" id="pendingBadge" hidden></span></button>
         <button class="btn btn-ghost tab-logout" type="button" id="logoutBtn">Esci</button>
       </div>
@@ -439,6 +453,37 @@
             <button class="btn btn-primary" type="submit" id="saveProjectBtn">Pubblica</button>
             <button class="btn btn-ghost" type="button" id="cancelProjectBtn">Annulla</button>
             <p class="form-status" id="projectStatus" role="status"></p>
+          </div>
+        </form>
+      </div>
+
+      <div id="tabPearls" role="tabpanel" hidden>
+        <p class="hint">Ogni perla è una regola o un trucco da costruttore, con una foto. Vengono numerate in ordine.</p>
+        <ul class="admin-list" id="adminPearls"></ul>
+        <form class="pform" id="pearlForm" novalidate>
+          <h3 id="pearlFormTitle">Nuova perla</h3>
+          <div class="pform-grid">
+            <label class="span2" for="plTitle">Titolo
+              <input id="plTitle" maxlength="120" placeholder="Es. Tre piastre fanno un mattoncino">
+            </label>
+            <label class="span2" for="plText">Spiegazione
+              <textarea id="plText" rows="4" maxlength="1500" placeholder="Spiega la regola come la diresti a un amico."></textarea>
+            </label>
+          </div>
+          <div class="photo-row">
+            <div class="photo-slot" id="plSlot">Nessuna foto</div>
+            <div class="home-admin-actions">
+              <label class="btn btn-ghost file-btn" for="plFile">Scegli la foto</label>
+              <input id="plFile" type="file" accept="image/*" class="visually-hidden">
+            </div>
+          </div>
+          <label class="check-line" for="plPublished">
+            <input id="plPublished" type="checkbox" checked> Pubblica sul sito (se togli la spunta resta una bozza che vedi solo tu)
+          </label>
+          <div class="pform-actions">
+            <button class="btn btn-primary" type="submit" id="plSave">Salva la perla</button>
+            <button class="btn btn-ghost" type="button" id="plCancel" hidden>Annulla</button>
+            <p class="form-status" id="plStatus" role="status"></p>
           </div>
         </form>
       </div>

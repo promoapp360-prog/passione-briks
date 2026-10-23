@@ -288,10 +288,10 @@
 
   function showPanel() {
     $('#loginForm').hidden = true; $('#adminPanel').hidden = false;
-    renderAdminProjects(); loadAdminMessages(); renderCatalog(); renderHomeAdmin();
+    renderAdminProjects(); loadAdminMessages(); renderCatalog(); renderHomeAdmin(); loadPearls(); if (!pearlEdit) resetPearlForm();
   }
 
-  function logout() { token = ''; store.del('pb_token'); $('#adminPanel').hidden = true; $('#loginForm').hidden = false; $('#pinInput').value = ''; renderCatalog(); }
+  function logout() { token = ''; store.del('pb_token'); $('#adminPanel').hidden = true; $('#loginForm').hidden = false; $('#pinInput').value = ''; renderCatalog(); loadPearls(); }
 
   function handleAuthError(e) { if (e.status === 401) { logout(); $('#loginStatus').className = 'form-status err'; $('#loginStatus').textContent = 'Sessione scaduta: scrivi di nuovo il PIN.'; return true; } return false; }
 
@@ -436,6 +436,70 @@
           </div>
         </li>`).join('') : '<li class="hint">Nessun messaggio per ora.</li>';
     } catch (e) { if (!handleAuthError(e)) ul.innerHTML = `<li class="hint">${esc(e.message)}</li>`; }
+  }
+
+  /* ---------------- Perle tecniche ---------------- */
+  let pearls = [];
+  let pearlEdit = null; // { id, title, text, image, photo } in modifica
+  const pearlSrc = (pl) => (pl.image ? imgUrl(pl.image) : pl.photo || '');
+
+  function renderPearls() {
+    const ol = $('#perleList');
+    const pub = pearls.filter((x) => x.published !== false);
+    ol.innerHTML = pub.length ? pub.map((pl, i) => `
+      <li class="perla">
+        ${pearlSrc(pl) ? `<div class="perla-photo"><img src="${esc(pearlSrc(pl))}" alt="${esc(pl.title)}" loading="lazy"></div>` : ''}
+        <div class="perla-body">
+          <span class="perla-num">Perla n. ${i + 1}</span>
+          <h3>${esc(pl.title)}</h3>
+          <p>${esc(pl.text)}</p>
+        </div>
+      </li>`).join('') : '<li class="hint">Le perle arrivano presto.</li>';
+    $('#perle').hidden = !pub.length;
+  }
+
+  async function loadPearls() {
+    try { pearls = await api(token ? '/api/pearls?all=1' : '/api/pearls'); }
+    catch { try { pearls = await api('/api/pearls'); } catch { pearls = []; } }
+    renderPearls(); renderAdminPearls();
+  }
+
+  function renderAdminPearls() {
+    const ul = $('#adminPearls'); if (!ul) return;
+    ul.innerHTML = pearls.map((pl, i) => `
+      <li class="admin-item" data-id="${esc(pl.id)}">
+        ${pearlSrc(pl) ? `<img class="thumb" src="${esc(pearlSrc(pl))}" alt="">` : '<span class="thumb"></span>'}
+        <div class="grow"><b>${i + 1}. ${esc(pl.title)} ${pl.published === false ? '<span class="draft">Bozza</span>' : '<span class="live">Online</span>'}</b><span>${esc(pl.text.slice(0, 90))}${pl.text.length > 90 ? '…' : ''}</span></div>
+        <div class="actions">
+          ${i > 0 ? '<button class="btn btn-ghost" type="button" data-pact="up" aria-label="Sposta su">↑</button>' : ''}
+          <button class="btn btn-ghost" type="button" data-pact="toggle">${pl.published === false ? 'Pubblica' : 'Nascondi'}</button>
+          <button class="btn btn-ghost" type="button" data-pact="edit">Modifica</button>
+          <button class="btn btn-danger" type="button" data-pact="del">Elimina</button>
+        </div>
+      </li>`).join('') || '<li class="hint">Nessuna perla ancora.</li>';
+  }
+
+  function resetPearlForm() {
+    pearlEdit = { id: '', title: '', text: '', image: null, photo: null, published: true };
+    $('#plTitle').value = ''; $('#plText').value = ''; $('#plPublished').checked = true;
+    $('#pearlFormTitle').textContent = 'Nuova perla';
+    $('#plSave').textContent = 'Salva la perla';
+    $('#plCancel').hidden = true;
+    renderPearlSlot();
+  }
+  function renderPearlSlot() {
+    const src = pearlEdit && pearlSrc(pearlEdit);
+    $('#plSlot').innerHTML = src ? `<img src="${esc(src)}" alt="">` : 'Nessuna foto';
+  }
+
+  async function savePearls(list, okMsg) {
+    const st = $('#plStatus');
+    try {
+      pearls = await api('/api/pearls', { method: 'PUT', body: JSON.stringify(list) });
+      st.className = 'form-status ok'; st.textContent = okMsg;
+      renderPearls(); renderAdminPearls();
+      return true;
+    } catch (e) { if (!handleAuthError(e)) { st.className = 'form-status err'; st.textContent = e.message; } return false; }
   }
 
   /* ---------------- Catalogo di tutti i treni LEGO ---------------- */
@@ -681,6 +745,40 @@
     $('#hRemove').addEventListener('click', () => { collection.homePhoto = null; saveHome('Foto tolta dalla home.'); });
     $('#hCapSave').addEventListener('click', () => { collection.homeCaption = $('#hCap').value.trim(); saveHome('Scritta salvata.'); });
 
+    $('#plFile').addEventListener('change', async (e) => {
+      const f = e.target.files[0]; e.target.value = ''; if (!f) return;
+      const st = $('#plStatus'); st.className = 'form-status'; st.textContent = 'Carico la foto…';
+      try { pearlEdit.image = await uploadFile(f); pearlEdit.photo = null; renderPearlSlot(); st.className = 'form-status ok'; st.textContent = 'Foto pronta.'; }
+      catch (err) { if (!handleAuthError(err)) { st.className = 'form-status err'; st.textContent = err.message; } }
+    });
+    $('#pearlForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const title = $('#plTitle').value.trim(), text = $('#plText').value.trim();
+      if (!title) { $('#plStatus').className = 'form-status err'; $('#plStatus').textContent = 'Scrivi il titolo della perla.'; $('#plTitle').focus(); return; }
+      const published = $('#plPublished').checked;
+      const item = { ...pearlEdit, title, text, published };
+      const list = pearlEdit.id ? pearls.map((x) => (x.id === pearlEdit.id ? item : x)) : [...pearls, { ...item, id: '' }];
+      if (await savePearls(list, published ? 'Fatto: la perla è online sul sito.' : 'Salvata come bozza: sul sito non si vede finché non la pubblichi.')) resetPearlForm();
+    });
+    $('#plCancel').addEventListener('click', resetPearlForm);
+    $('#adminPearls').addEventListener('click', (e) => {
+      const b = e.target.closest('[data-pact]'); if (!b) return;
+      const li = b.closest('.admin-item'); const id = li.dataset.id; const i = pearls.findIndex((x) => x.id === id);
+      if (b.dataset.pact === 'edit') {
+        pearlEdit = { ...pearls[i] };
+        $('#plTitle').value = pearlEdit.title; $('#plText').value = pearlEdit.text; $('#plPublished').checked = pearlEdit.published !== false;
+        $('#pearlFormTitle').textContent = 'Modifica la perla n. ' + (i + 1);
+        $('#plSave').textContent = 'Salva le modifiche'; $('#plCancel').hidden = false;
+        renderPearlSlot(); $('#plTitle').focus();
+      }
+      if (b.dataset.pact === 'toggle') {
+        const on = pearls[i].published === false;
+        savePearls(pearls.map((x) => (x.id === id ? { ...x, published: on } : x)), on ? 'Perla pubblicata sul sito.' : 'Perla nascosta dal sito.');
+      }
+      if (b.dataset.pact === 'up' && i > 0) { const l = [...pearls]; [l[i - 1], l[i]] = [l[i], l[i - 1]]; savePearls(l, 'Ordine aggiornato.'); }
+      if (b.dataset.pact === 'del') askConfirm(li, 'Eliminare questa perla?', () => savePearls(pearls.filter((x) => x.id !== id), 'Perla eliminata.'));
+    });
+
     $('#newProjectBtn').addEventListener('click', () => startEdit(null));
     $('#cancelProjectBtn').addEventListener('click', () => { $('#projectForm').hidden = true; draft = null; });
     $('#projectForm').addEventListener('submit', saveProject);
@@ -751,4 +849,5 @@
   loadProjects();
   loadMessages();
   loadCatalog();
+  loadPearls();
 })();
